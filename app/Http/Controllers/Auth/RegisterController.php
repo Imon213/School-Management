@@ -64,10 +64,10 @@ class RegisterController extends Controller
         
  }
 
-    public function registration()
-    {
-        return view('Backend.registration');
-    }
+    // public function registration()
+    // {
+    //     return view('Backend.all_users');
+    // }
 
     public function register(Request $request)
     { {
@@ -102,7 +102,7 @@ class RegisterController extends Controller
 
                 $admin->save();
                 // return redirect()->route('login');
-                 echo "done";
+                 return redirect('user');
             }
         }
     }
