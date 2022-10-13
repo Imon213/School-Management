@@ -166,3 +166,5 @@ Route::get('/calendar-event', [CalenderController::class, 'index'])->name('calen
 Route::post('/calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 
 Route::get('/calender/class-routine', [CalenderController::class, 'userCalender'])->name('userCalender');
+//pagination
+Route::get('/pagination/paginate-data', [RegisterController::class, 'Pagination']);

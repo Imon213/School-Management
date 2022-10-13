@@ -13,7 +13,8 @@ use App\Mail\SendMail;
 class RegisterController extends Controller
 {
     public function Users(){
-        return view('Backend.all_users');
+        $user = registration::paginate(2);
+        return view('Backend.all_users',compact('user'));
     }
     public function GetRegisteredUser(Request $request)
     {
@@ -105,5 +106,9 @@ class RegisterController extends Controller
                  echo "done";
             }
         }
+    }
+    public function Pagination(Request $request){
+        $user = registration::paginate(2);
+        return view('Backend.pagination',compact('user'))->render();
     }
 }
