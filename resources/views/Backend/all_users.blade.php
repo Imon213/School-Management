@@ -34,17 +34,28 @@
          .user-table{
             margin-top:50px;
          }
+
+        @media only screen and (max-width: 768px) {
+      #exampleModal{
+        width: 100%;
+        margin:0;
+       
+      }
     </style>
 </head>
 
 <body>
     <div class="container">
+
         <div class="form-input">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" class="form-control" id="search" name="search" placeholder="Type here to search any user">
         </div>
+         <a href="" class="btn btn-success my-3" data-toggle="modal" data-target="#exampleModal">
+            Registration</a>
+        
         <div class="row user-table">
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -63,6 +74,7 @@
             </div>
         </div>
     </div>
+    @include('Backend.registration_all_user') 
 
     <script>
        
@@ -92,6 +104,7 @@ $(document).on('keyup', '#search', function(){
 });
 
     </script>
+    
 </body>
 
 </html>
