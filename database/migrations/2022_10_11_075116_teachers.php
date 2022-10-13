@@ -1,0 +1,38 @@
+<?php
+use App\Models\Auth\Registration;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('teachers', function (Blueprint $table) {
+            $table->id();
+           $table->string('name');
+           $table->string('dob');
+           $table->string('gender');
+           $table->string('qualificattion');
+           $table->string('phone');
+           $table->string('teach_id');
+           $table->foreignIdFor(Registration::class);
+            });   
+
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //
+    }
+};
