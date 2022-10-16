@@ -115,20 +115,7 @@
                         <a href="javascript:void(0)" id="show-user" data-url="{{route('notice_details', $item->id)}}"
                             class="btn"><i class=" fa-solid
                             fa-paperclip"></i>Details</a>
-
-
-                        <!-- <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class=" fa-solid
-
-
-
-<<<<<<< HEAD
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class=" fa-solid
-
-                            fa-paperclip"></i>Details</button>
-=======
->>>>>>> 04bbb5b28853b12da6afa68c9d33b6b71192466c
-
-                             -->
+                           
                     </div>
 
 
@@ -184,20 +171,19 @@
                 $('#userShowModal').modal('show');
                 $('#user-name').text(data.event_name);
                 $('#desc').text(data.description);
-                $('#desc').text(data.description);
+               
             });
         });
     });
     </script>
 
-<<<<<<< HEAD
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
-=======
->>>>>>> 04bbb5b28853b12da6afa68c9d33b6b71192466c
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
     </script>

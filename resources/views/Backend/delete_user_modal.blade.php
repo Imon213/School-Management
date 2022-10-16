@@ -118,7 +118,7 @@ body {
             </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a href="/delete_user/{{$users->id}}"> <button class="btn btn-danger">Delete</button></a>
+                <a  id="link" href="">  <button class="btn btn-danger">Delete</button></a>
                 <!-- <button type="button" class="btn btn-danger">Delete</button> -->
             </div>
         </div>
