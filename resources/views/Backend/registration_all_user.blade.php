@@ -5,7 +5,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<title></title>
 	<style type="text/css">
-		    @media only screen and (max-width: 768px) {
+	@media only screen and (max-width: 768px) {
       #exampleModal{
         width: 100%;
         margin:0;
@@ -19,7 +19,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <form class="mx-1 mx-md-4" action=""  method="post">
+  <form class="mx-1 mx-md-4" id="form-submit"  method="post">
   	@csrf
   	<div class="modal-dialog">
   		<div class="modal-content">

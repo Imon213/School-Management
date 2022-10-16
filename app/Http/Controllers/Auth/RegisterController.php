@@ -73,8 +73,20 @@ class RegisterController extends Controller
 
                 $admin->save();
                 
-                 return 'Successfuly Uploaded';
+                 return 'success';
             }
         
+    }
+
+        public function DeleteUser(Request $request)
+    {
+        $user = Registration::where('id', $request->id)->first();
+        $user->delete();
+
+        return redirect()->back()->with('msg', 'Event Deleted Sucessfuly');
+    }
+    public function DeleteReg(Request $request){
+        return registration::where('id',$request->id)->first();
+
     }
 }
