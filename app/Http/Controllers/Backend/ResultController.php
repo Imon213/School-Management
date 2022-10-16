@@ -45,5 +45,5 @@ class ResultController extends Controller
       return redirect()->route('marksdisttibution');
      
     }
-    
+
 }
