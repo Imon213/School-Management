@@ -5,7 +5,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<title></title>
 	<style type="text/css">
-		    @media only screen and (max-width: 768px) {
+	@media only screen and (max-width: 768px) {
       #exampleModal{
         width: 100%;
         margin:0;

@@ -78,4 +78,12 @@ class RegisterController extends Controller
             }
         
     }
+
+        public function DeleteUser(Request $request)
+    {
+        $user = Registration::where('id', $request->id)->first();
+        $user->delete();
+
+        return redirect()->back()->with('msg', 'Event Deleted Sucessfuly');
+    }
 }
