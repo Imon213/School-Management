@@ -136,11 +136,12 @@
                             @if($users->status =='incomplete')
                             <td class="text-danger">{{$users->status}}</td>
                             <td><a class="btn btn-success" href="#"><i class="fa-solid fa-address-card"></i></a></td>
-                            <td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a class="btn btn-danger" href="#my-modal" data-toggle="modal" data-target="#my-modal"><i class="fa-solid fa-trash"></i></a></td>
                             @else
                             <td class="text-primary">{{$users->status}}</td>
                             <td><a class="btn btn-primary" href="#"><i class="fa-solid fa-user-pen"></i></a></td>
-                            <td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="#my-modal" class="btn btn-danger"  data-toggle="modal" data-target="#my-modal"><i class="fa-solid fa-trash"></i></a></td>
+
                             @endif
                         </tr>
                         @endforeach
@@ -150,7 +151,9 @@
             </div>
 
         </div>
+        @include('Backend.delete_user_modal')
         @include('Backend.registration_all_user')
+        
 
         <script>
         $(document).ready(function() {

@@ -1,3 +1,6 @@
+<html>
+<body>
+<div>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -20,14 +23,20 @@
             @if($users->status =='incomplete')
             <td class="text-danger">{{$users->status}}</td>
             <td><a class="btn btn-success" href="#"><i class="fa-solid fa-address-card"></i></a></td>
-            <td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a></td>
+            <td><a class="btn btn-danger" href="#my-modal" data-toggle="modal" data-target="#my-modal"><i class="fa-solid fa-trash"></i></a></td>
             @else
             <td class="text-primary">{{$users->status}}</td>
             <td><a class="btn btn-primary" href="#"><i class="fa-solid fa-user-pen"></i></a></td>
-            <td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a></td>
+            <td><a class="btn btn-danger" href="#my-modal" data-toggle="modal" data-target="#my-modal" ><i class="fa-solid fa-trash"></i></a></td>
             @endif
         </tr>
         @endforeach
+        
     </tbody>
 </table>
 {!!$user->links()!!}
+</div>
+
+
+</body>
+</html>
