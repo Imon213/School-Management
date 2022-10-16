@@ -13,65 +13,43 @@ use App\Mail\SendMail;
 class RegisterController extends Controller
 {
     public function Users(){
-        $user = registration::paginate(2);
+        $user = registration::paginate(5);
         return view('Backend.all_users',compact('user'));
     }
     public function GetRegisteredUser(Request $request)
     {
-        if($request->ajax()){
-            $output = '';
-            $query = $request->get('query');
-            if($query != '')
-            {
-                $user = Registration::where('bcn','like', '%'.$query.'%')
-                ->orWhere('type','like', '%'.$query.'%')
-                ->orWhere('status','like', '%'.$query.'%')
-                ->orWhere('email','like', '%'.$query.'%')
-                ->get();
-            }
-            else
-            {
-             $user = Registration::get();
-            }
-            $total_row = $user->count();
-      if($total_row > 0)
-      {
-        $count =0;
-       foreach($user as $row)
+        $query = $request->get('query');
+       if($query != '')
        {
-        $count ++;
-       if($row->status ==='incomplete')
+        $user = registration::where('bcn','like', '%'.$query.'%')
+                                  ->orWhere('email','like', '%'.$query.'%')
+                                  ->orWhere('type','like', '%'.$query.'%')
+                                  ->orWhere('status','like', '%'.$query.'%')
+                                  ->paginate(5);
+        if($user->count() > 0)
+        {
+            return view('Backend.pagination',compact('user'))->render();
+        }
+        else
+        {
+            return "<h3>No Data Found</h3>";
+        }
+       }
+       else
        {
-        $output .= '
-        <tr>
-        <td>'.$count.'</td>
-         <td>'.$row->email.'</td>
-         <td>'.$row->bcn.'</td>
-         <td>'.$row->type.'</td>
-         <td><a href="#">Update Info</a></td>
-        </tr>
-        ';
+        $user = registration::paginate(5);
+        return view('Backend.pagination',compact('user'))->render();
        }
-       }
-      }
-      $data = array(
-        'table_data'  => $output,
-        'total_data'  => $total_row
-       );
-       return $data;
-
     }
-      
-        
- }
 
-    public function registration()
-    {
-        return view('Backend.registration');
+   
+    public function Pagination(Request $request){
+        $user = registration::paginate(5);
+        return view('Backend.pagination',compact('user'))->render();
     }
 
     public function register(Request $request)
-    { {
+    { 
              $validate = $request->validate([
                 'email' => 'email',
                 'type' => 'required',
@@ -93,22 +71,11 @@ class RegisterController extends Controller
                 $admin->bcn = $request->bcn;
                 $admin->password = $request->password;
                 $admin->status = "incomplete";
-                // $admin->save();
-                // $code = rand(1000, 9000);
-                // $details = [
-                //     'title' => 'Registration Confirmation',
-                //     'code' => $code
-                // ];
-                // $admin->otp = $code;
 
                 $admin->save();
                 // return redirect()->route('login');
-                 echo "done";
+                 return redirect('user');
             }
-        }
-    }
-    public function Pagination(Request $request){
-        $user = registration::paginate(2);
-        return view('Backend.pagination',compact('user'))->render();
+        
     }
 }
