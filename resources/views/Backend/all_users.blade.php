@@ -71,31 +71,34 @@
     }
 
     @media only screen and (max-width: 768px) {
-        .container{
-            margin:0;
-            padding:0!important;
+        .container {
+            margin: 0;
+            padding: 0 !important;
         }
-      
+
         #exampleModal {
             width: 100%;
             margin: 0;
 
         }
-        .table-data{
+
+        .table-data {
 
             font-size: 10px;
         }
-        .table tr td{
+
+        .table tr td {
             padding: 5px 0;
-            width:2rem !important;
+            width: 2rem !important;
         }
-        .table td a{
-            display:flex;
-            width:12px;
-            height:12px;
-            font-size:8px;
-            align-items:center;
-            justify-content:center;
+
+        .table td a {
+            display: flex;
+            width: 12px;
+            height: 12px;
+            font-size: 8px;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -135,12 +138,13 @@
                             <td>{{$users->type}}</td>
                             @if($users->status =='incomplete')
                             <td class="text-danger">{{$users->status}}</td>
-                            <td><a class="btn btn-success" href="#"><i class="fa-solid fa-address-card"></i></a></td>
-                            <td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a class="btn btn-success" href="/student/{{$users->id}}"><i
+                                        class="fa-solid fa-address-card"></i></a></td>
+                            <td><a class="btn btn-danger" href="#imon"><i class="fa-solid fa-trash"></i></a></td>
                             @else
                             <td class="text-primary">{{$users->status}}</td>
                             <td><a class="btn btn-primary" href="#"><i class="fa-solid fa-user-pen"></i></a></td>
-                            <td><a class="btn btn-danger" href="#"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a class="btn btn-danger" href="#imon"><i class="fa-solid fa-trash"></i></a></td>
                             @endif
                         </tr>
                         @endforeach
@@ -193,6 +197,33 @@
                     },
                 })
             }
+
+            
+            $(document).on('click', '#close', function(e) {
+                /* e.preventDefault(); */
+                /* $("#exampleModal .close").click() */
+                $('#exampleModal').modal().hide();
+                window.location.reload();
+            });
+            $(document).on('click', '#reg', function(e) {
+                e.preventDefault();
+                let email = $('#email').val();
+                let type = $('#type').val();
+                let bcn = $('#bcn').val();
+                let password = $('#password').val();
+                $.ajax({
+                    url:"{{route('registration')}}",
+                    method:'GET',
+                    data:{email:email, type:type, bcn:bcn, password:password},
+                    success:function(res){
+                     alert(res);
+                    }
+                })
+
+
+            });
+
+
         });
         </script>
 

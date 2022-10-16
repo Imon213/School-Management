@@ -28,8 +28,7 @@ Route::get('/', [StoryManageController::class, 'ViewStory'])->name('story');
 
 Route::get('/login', [Login::class, 'Login'])->name('login');
 Route::post('/login', [Login::class, 'loginSubmitted'])->name('login');
-// Route::get('/registration', [RegisterController::class, 'registration'])->name('registration');
-Route::post('/registration', [RegisterController::class, 'register'])->name('registration');
+Route::get('/registration', [RegisterController::class, 'register'])->name('registration');
 Route::get('/user', [RegisterController::class, 'Users'])->name('user');
 Route::get('/get.user', [RegisterController::class, 'GetRegisteredUser'])->name('get_user');
 //Story Controller
@@ -101,7 +100,7 @@ Route::get('/admin',[ProfileController::class,'admin'])->name('hell');
 // 	return view('Backend/admin');
 // });
 //Route::get('/dashboard',[ProfileController::class,'dash'])->name('dashboard')->middleware('page');
-Route::get('/admin',[ProfileController::class,'admin'])->name('admin')->middleware('page');
+Route::get('/admin',[ProfileController::class,'admin'])->name('admin');
 Route::get('/e',[ProfileController::class,'regi'])->name('e');
 Route::get('/logout',[Login::class,'logout'])->name('lout');
 
@@ -125,9 +124,6 @@ Route::get('/change', [ProfileController::class, 'change'])->name('changepass')-
 
 
 
-Route::get('/upload_program',function(){
-	return view('Backend.upload_program');
-});
 
 
 
@@ -168,3 +164,9 @@ Route::post('/calendar-crud-ajax', [CalenderController::class, 'calendarEvents']
 Route::get('/calender/class-routine', [CalenderController::class, 'userCalender'])->name('userCalender');
 //pagination
 Route::get('/pagination/paginate-data', [RegisterController::class, 'Pagination']);
+
+//student
+
+Route::get('/student/{id}',function(){
+	return view('Backend.student');
+});

@@ -13,7 +13,7 @@ use App\Mail\SendMail;
 class RegisterController extends Controller
 {
     public function Users(){
-        $user = registration::paginate(5);
+        $user = registration::paginate(10);
         return view('Backend.all_users',compact('user'));
     }
     public function GetRegisteredUser(Request $request)
@@ -25,7 +25,7 @@ class RegisterController extends Controller
                                   ->orWhere('email','like', '%'.$query.'%')
                                   ->orWhere('type','like', '%'.$query.'%')
                                   ->orWhere('status','like', '%'.$query.'%')
-                                  ->paginate(5);
+                                  ->paginate(10);
         if($user->count() > 0)
         {
             return view('Backend.pagination',compact('user'))->render();
@@ -37,33 +37,32 @@ class RegisterController extends Controller
        }
        else
        {
-        $user = registration::paginate(5);
+        $user = registration::paginate(10);
         return view('Backend.pagination',compact('user'))->render();
        }
     }
 
    
     public function Pagination(Request $request){
-        $user = registration::paginate(5);
+        $user = registration::paginate(10);
         return view('Backend.pagination',compact('user'))->render();
     }
 
     public function register(Request $request)
     { 
-             $validate = $request->validate([
-                'email' => 'email',
-                'type' => 'required',
-                'bcn' => 'required',
-                'password' => 'required| min:8 | max:12'
-            ]);
+            //  $validate = $request->validate([
+            //     'email' => 'email',
+            //     'type' => 'required',
+            //     'bcn' => 'required',
+            //     'password' => 'required| min:8 | max:12'
+            // ]);
             $admin = Registration::where('email', $request->email)
                 ->first();
 
 
 
             if ($admin) {
-                $request->session()->flash('reg', 'This account already exists');
-                return redirect()->route('registration');
+               return "User already exist";
             } else {
                 $admin = new  Registration();
                 $admin->email = $request->email;
@@ -73,8 +72,8 @@ class RegisterController extends Controller
                 $admin->status = "incomplete";
 
                 $admin->save();
-                // return redirect()->route('login');
-                 return redirect('user');
+                
+                 return 'Successfuly Uploaded';
             }
         
     }
