@@ -21,7 +21,7 @@ class ProfileController extends Controller
         $v = image::where('registration_id', session('user'))->latest()->first();
         return view('Backend/profile')->with('ss', $var)->with('v', $v);
         //  return view('Backend/admin')->with('ss',$var)->with('v',$v);
-        //return $var;
+        //return $v;
 
 
     }
