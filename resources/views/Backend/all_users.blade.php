@@ -149,8 +149,9 @@
                             @else
                             <td class="text-primary">{{$users->status}}</td>
                             <td><a class="btn btn-primary" href="#"><i class="fa-solid fa-user-pen"></i></a></td>
-                            <td><a href="#my-modal" class="btn btn-danger" data-toggle="modal"
-                                    data-target="#my-modal"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="javascript:void(0)" id="show-modal"
+                                    data-url="{{route('delete_reg', $users->id)}}" class="btn btn-danger"><i
+                                        class="fa-solid fa-trash"></i></a></td>
 
 
                             @endif
@@ -252,10 +253,19 @@
                 var urlData = $(this).data('url');
                 $.get(urlData, function(data) {
                     $('#my-modal').modal('show');
-                    $('#link').attr("href", "delete_user/"+data.id);
+                    $('#email').text(data.email);
+                    $('#link').attr("href", "delete_user/" + data.id);
 
                 });
             });
+
+            $(document).on('click', '#cancel', function(e) {
+                $('#my-modal').modal('hide');
+
+            });
+
+         
+
 
 
         });
