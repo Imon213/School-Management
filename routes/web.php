@@ -169,6 +169,11 @@ Route::get('/pagination/paginate-data', [RegisterController::class, 'Pagination'
 
 //student
 
-Route::get('/student/{id}',function(){
-	return view('Backend.student');
-});
+Route::get('/student/{id}',[RegisterController::class, 'user']);
+Route::post('/studentinfo',[RegisterController::class, 'userinfo'])->name('studentinfo');
+
+Route::get('/teacher/{id}',[RegisterController::class, 'user']);
+Route::post('/teacherinfo',[RegisterController::class, 'userinfo'])->name('teacherinfo');
+
+Route::get('/adminreg/{id}',[RegisterController::class, 'user']);
+Route::post('/admininfo',[RegisterController::class, 'userinfo'])->name('admininfo');
