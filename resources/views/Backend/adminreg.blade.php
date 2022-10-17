@@ -81,46 +81,33 @@
 
 <body>
     <div class="reg_form">
-        <h5 class="text-center title p-2">STUDENT BASIC INFORMATION</h3>
+        <h5 class="text-center title p-2">Admin BASIC INFORMATION</h3>
             <div class="form-content">
 
 
                 <br>
-                <form action="{{route('studentinfo')}}" method="post">
+                <form action="{{route('admininfo')}}" method="post">
                     @csrf
 
-                    <label>Student's full name</label>
+                    <label>Admin's full name</label>
                     <input type="text" name="name" class="form-control" placeholder="Enter Name"><br>
 
 
-                    <label>Student's father name:</label>
-                    <input type="text" name="fname" class="form-control" placeholder="Father Name"><br>
-
-                    <label>Student's mother name:</label>
-                    <input type="text" name="mname" class="form-control" placeholder="Mother Name"><br>
-
-
-                    <label>Student's phone number</label>
+                    <label>Admin's phone number</label>
                     <input type="phone" name="phone" class="form-control" placeholder="Phone Number"><br>
 
-                    <label for="birthdaytime">Student's date of birth:</label>
+                    <label for="birthdaytime">Admin's date of birth:</label>
                     <input class="form-control" type="date" name="dob" id="birthdaytime"><br>
 
-                    <label for="birthdaytime">Student's gender:</label>
+                    <label for="birthdaytime">Admin's gender:</label>
                     <input class="form-check-input" type="radio" name="gender" value="male"> Male
                     <input class="form-check-input" type="radio" name="gender" value="female"> Female
 
                     <br>
                     <br>
-                    <label for="address">Student's current address:</label>
-                    <input type="address" name="address" class="form-control" placeholder="Current Address"><br>
-
-
-                    <label>Student's roll no:</label>
-                    <input type="number" name="roll" class="form-control" min="100000" placeholder="Enter Roll"><br>
 
                    
-                    <input type="hidden" name="id" value="{{$student}}" class="form-control" >
+                    <input type="hidden" name="id" value="{{$admin}}" class="form-control" >
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="SUBMIT INFORMATION">
