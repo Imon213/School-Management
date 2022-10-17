@@ -114,10 +114,12 @@ body {
                 <h4 class="modal-title w-100">Are you sure?</h4>    
             </div>
             <div class="modal-body">
-                <p>Do you really want to delete these records? This process cannot be undone.</p>
+                
+               <span>Do you really want to delete </span> <span class="text-primary" id="email"></span>? <br>
+               <span class="text-danger">Once you delete, this process cannot be undone.</span>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <a  id="link" href="">  <button class="btn btn-danger">Delete</button></a>
                 <!-- <button type="button" class="btn btn-danger">Delete</button> -->
             </div>
