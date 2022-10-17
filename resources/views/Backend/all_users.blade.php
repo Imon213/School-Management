@@ -163,7 +163,7 @@
             </div>
 
         </div>
-        @include('Backend.delete_user_modal');
+        @include('Backend.delete_user_modal')
         @include('Backend.registration_all_user')
 
 

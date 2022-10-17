@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMail;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\Admin;
 
 
 class RegisterController extends Controller
@@ -70,7 +73,6 @@ class RegisterController extends Controller
                 $admin->bcn = $request->bcn;
                 $admin->password = $request->password;
                 $admin->status = "incomplete";
-
                 $admin->save();
                 
                  return 'success';
@@ -88,5 +90,68 @@ class RegisterController extends Controller
     public function DeleteReg(Request $request){
         return registration::where('id',$request->id)->first();
 
+    }
+
+    public function user(Request $request){
+        $user = Registration::where('id',$request->id)->first();
+        if($user->type=='student'){
+        return view('Backend.student')->with('student', $request->id);
+    }
+    elseif($user->type=='teacher'){
+        return view('Backend.teacher')->with('teacher', $request->id);
+    }
+    else{
+        return view('Backend.adminreg')->with('admin', $request->id);
+    }
+    }
+    public function userinfo(Request $request){
+            $reg = Registration::where('id',$request->id)->first();
+        
+               if($reg->type=='student' ){
+                $reg->status ="active";
+                $reg->save();
+                $user = new  Student(); 
+                $user->name = $request->name;
+                $user->fname = $request->fname;
+                $user->mname = $request->mname;
+                $user->phone = $request->phone;
+                $user->dob = $request->dob;
+                $user->gender = $request->gender;
+                $user->address = $request->address;
+                $user->roll = $request->roll;
+                $user->registration_id = $reg->id;
+                $user->save();
+                return redirect()->route('user');
+            }
+                elseif($reg->type=='teacher'){
+                $reg->status ="active";
+                $reg->save();
+                $user = new  Teacher();
+                $user->name = $request->name;
+                $user->dob = $request->dob;
+                $user->gender = $request->gender;
+                $user->qualificattion = $request->qualification;
+                $user->phone = $request->phone;
+                $user->teach_id = $request->teach_id;
+                $user->registration_id = $reg->id;
+                $user->save();
+                return redirect()->route('user');
+                }
+                else{
+                $reg->status ="active";
+                $reg->save();
+                $user = new  Admin();
+                $user->name = $request->name;
+                $user->dob = $request->dob;
+                $user->gender = $request->gender;
+               
+                $user->phone = $request->phone;
+               
+                $user->registration_id = $reg->id;
+                $user->save();
+                return redirect()->route('user');
+                }
+
+        
     }
 }
