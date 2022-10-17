@@ -24,12 +24,12 @@ class Login extends Controller
             ->first();
         if ($stu) {
             
-            if($stu->status==0)
+            if($stu->type=="admin")
             {
                $request->session()->put('user', $stu->id);
             // return redirect()->route('vendorDashboard');
             $request->session()->put('email', $stu->email);
-            $request->session()->put('name', $stu->name);
+            //$request->session()->put('name', $stu->name);
                 return redirect()->route('admin');
             }
             elseif ($stu->status==1) {

@@ -52,24 +52,30 @@
                     <label for="session">Select Session</label>
                     <select name="session" id="session" class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option value="one">2022</option>
-                        <option value="two">2022-2023</option>
+                        @foreach ($ss as $sss)
+                        <option value={{$sss->id}}>{{$sss->session_name}}</option>
+                        
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label for="subject">Select Subject</label>
                     <select name="subject" id="subject" class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option value="Bangla">Bangla</option>
-                        <option value="English">English</option>
+                         @foreach ($v as $vs)
+                        <option value={{$vs->id}}>{{$vs->sub_name}}</option>
+                        
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-3">
                     <label for="class_name">Select Class</label>
                     <select name="class_name" id="class_name" class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
-                        <option value="one">One</option>
-                        <option value="two">Two</option>
+                         @foreach ($d as $ds)
+                        <option value={{$ds->id}}>{{$ds->class_name}}</option>
+                        
+                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-3">

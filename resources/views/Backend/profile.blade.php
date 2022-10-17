@@ -71,7 +71,7 @@
     <div class="container rounded bg-white mt-5 mb-5">
         <div>
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                @if($ss->image)
+                @if($v->image)
                 <img  width="150px" src="storage/images/{{$v->image}}">
                 @else
                 <img  width="150px" src="image/blank_dp.jpg">

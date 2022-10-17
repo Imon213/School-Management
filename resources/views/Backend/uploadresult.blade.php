@@ -20,7 +20,7 @@
             <div class="col-md-12 col-sm-12">
 
                 <table class="table caption-top">
-                    <caption>List of users</caption>
+                    <caption>List of result</caption>
                     <thead>
                         <tr>
 

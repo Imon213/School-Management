@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Subject;
 use App\Models\Mark;
-
+use App\Models\Session;
+use App\Models\Class_model;
 class ResultController extends Controller
 {
     public function GetResult(){
@@ -17,7 +18,10 @@ class ResultController extends Controller
     }
 
     public function MarksDistribution(){
-      return view('Backend.marksdistribution');
+       $var = Session::all();
+       $v = Subject::all();
+       $f=Class_model::all();
+      return view('Backend.marksdistribution')->with('ss', $var)->with('v', $v)->with('d',$f);
     }
     public function MarksDistributionSubmitted(Request $request){
       $title = $request->title;
@@ -38,7 +42,8 @@ class ResultController extends Controller
         ]);
         
       }
-      
+      return redirect()->route('marksdisttibution');
      
     }
+
 }
