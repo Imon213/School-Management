@@ -177,3 +177,5 @@ Route::post('/teacherinfo',[RegisterController::class, 'userinfo'])->name('teach
 
 Route::get('/adminreg/{id}',[RegisterController::class, 'user']);
 Route::post('/admininfo',[RegisterController::class, 'userinfo'])->name('admininfo');
+
+Route::get('/edituser/{id}',[RegisterController::class, 'edituser'])->name('edituser');

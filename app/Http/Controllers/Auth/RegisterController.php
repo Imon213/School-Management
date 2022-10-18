@@ -53,12 +53,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     { 
-            //  $validate = $request->validate([
-            //     'email' => 'email',
-            //     'type' => 'required',
-            //     'bcn' => 'required',
-            //     'password' => 'required| min:8 | max:12'
-            // ]);
+
             $admin = Registration::where('email', $request->email)
                 ->first();
 
@@ -144,9 +139,7 @@ class RegisterController extends Controller
                 $user->name = $request->name;
                 $user->dob = $request->dob;
                 $user->gender = $request->gender;
-               
                 $user->phone = $request->phone;
-               
                 $user->registration_id = $reg->id;
                 $user->save();
                 return redirect()->route('user');
@@ -154,4 +147,16 @@ class RegisterController extends Controller
 
         
     }
+
+    public function edituser(Request $request){
+        $user = Registration::where('id', $request->id)->first();
+        if($user->type=='student'){
+            $student = Student::where('registration_id', $request->id)->first();
+        return view('Backend.editStudent')->with('student', $student);
+    }
+    else{
+        echo "failed";
+    }
+    }
+
 }
