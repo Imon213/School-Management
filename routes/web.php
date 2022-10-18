@@ -20,9 +20,7 @@ use App\Http\Controllers\Backend\ClassRoutineController;
 use App\Http\Controllers\Backend\ResultController;
 use App\Http\Controllers\Frontend\NoticeManageController;
 use App\Http\Controllers\Frontend\StudentResultManagementController;
-
-
-
+use App\Http\Controllers\pageController;
 
 Route::get('/', [StoryManageController::class, 'ViewStory'])->name('story');
 
@@ -94,16 +92,16 @@ Route::get('/run', function () {
 
 
 
-Route::get('/admin',[ProfileController::class,'admin'])->name('hell');
+Route::get('/admin', [ProfileController::class, 'admin'])->name('hell');
 
 //////////////////ADMIN/////////////////
 // Route::get('/admin', function () {
 // 	return view('Backend/admin');
 // });
 //Route::get('/dashboard',[ProfileController::class,'dash'])->name('dashboard')->middleware('page');
-Route::get('/admin',[ProfileController::class,'admin'])->name('admin')->middleware('page');
-Route::get('/e',[ProfileController::class,'regi'])->name('e');
-Route::get('/logout',[Login::class,'logout'])->name('lout');
+Route::get('/admin', [ProfileController::class, 'admin'])->name('admin')->middleware('page');
+Route::get('/e', [ProfileController::class, 'regi'])->name('e');
+Route::get('/logout', [Login::class, 'logout'])->name('lout');
 
 
 
@@ -125,7 +123,7 @@ Route::get('/change', [ProfileController::class, 'change'])->name('changepass')-
 
 
 
-Route::get('/upload_program',function(){
+Route::get('/upload_program', function () {
 	return view('Backend.upload_program');
 });
 
@@ -140,11 +138,11 @@ Route::get('/delete_notice/{id}', [CalenderController::class, 'DeleteNotice'])->
 Route::get('/notice_details/{id}', [NoticeManageController::class, 'NoticeDetails'])->name('notice_details');
 
 //Student Dashboard Controller
-Route::get('/upload_class_routine',[ClassRoutineController::class,'GetSubject'])->name('getsubject');
-Route::post('/upload_class_routine',[ClassRoutineController::class,'AddRoutine'])->name('getsubject');
-Route::get('/dashboard',[StudentDashboardController::class,'Dashboard'])->name('dashboard')->middleware('page');
-Route::get('/upload_program',[UploadProgramController::class,'GetSubject'])->name('subject');
-Route::post('/upload_program',[UploadProgramController::class,'AddProgram'])->name('subject');
+Route::get('/upload_class_routine', [ClassRoutineController::class, 'GetSubject'])->name('getsubject');
+Route::post('/upload_class_routine', [ClassRoutineController::class, 'AddRoutine'])->name('getsubject');
+Route::get('/dashboard', [StudentDashboardController::class, 'Dashboard'])->name('dashboard')->middleware('page');
+Route::get('/upload_program', [UploadProgramController::class, 'GetSubject'])->name('subject');
+Route::post('/upload_program', [UploadProgramController::class, 'AddProgram'])->name('subject');
 //StudentResult controller
 
 Route::get('/getresult', [ResultController::class, 'GetResult'])->name('getresult');
@@ -154,8 +152,8 @@ Route::get('/getmarks', [StudentResultManagementController::class, 'GetMarks'])-
 
 //Courses Controller
 
-Route::get('/calander',[CalenderController::class,'userCalender'])->name('userCalander');
-Route::get('/upload_class_routine',[ClassRoutineController::class,'GetSubject'])->name('getsubject');
+Route::get('/calander', [CalenderController::class, 'userCalender'])->name('userCalander');
+Route::get('/upload_class_routine', [ClassRoutineController::class, 'GetSubject'])->name('getsubject');
 
 Route::get('/upload_class_routine', [ClassRoutineController::class, 'GetSubject'])->name('getsubject');
 
@@ -168,3 +166,7 @@ Route::post('/calendar-crud-ajax', [CalenderController::class, 'calendarEvents']
 Route::get('/calender/class-routine', [CalenderController::class, 'userCalender'])->name('userCalender');
 //pagination
 Route::get('/pagination/paginate-data', [RegisterController::class, 'Pagination']);
+
+
+
+Route::get('/my-school', [pageController::class, "landing"])->name("landing");

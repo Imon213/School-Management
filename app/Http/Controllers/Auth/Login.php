@@ -23,23 +23,19 @@ class Login extends Controller
             ->where('password', $request->password)
             ->first();
         if ($stu) {
-            
-            if($stu->status==0)
-            {
-               $request->session()->put('user', $stu->id);
-            // return redirect()->route('vendorDashboard');
-            $request->session()->put('email', $stu->email);
-            $request->session()->put('name', $stu->name);
-                return redirect()->route('admin');
-            }
-            elseif ($stu->status==1) {
+
+            if ($stu->status == 0) {
+                $request->session()->put('user', $stu->id);
+                // return redirect()->route('vendorDashboard');
                 $request->session()->put('email', $stu->email);
-                 return redirect()->route('dashboard');
+                $request->session()->put('name', $stu->name);
+                return redirect()->route('admin');
+            } elseif ($stu->status == 1) {
+                $request->session()->put('email', $stu->email);
+                return redirect()->route('dashboard');
+            } else {
+                return redirect()->route('login');
             }
-
-
-          
-           
         } else {
             return redirect()->route('login');
         }
@@ -47,6 +43,6 @@ class Login extends Controller
     public function logout()
     {
         session()->flush();
-         return redirect()->route('login');
+        return redirect()->route('login');
     }
 }
