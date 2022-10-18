@@ -76,6 +76,22 @@
             margin: 0;
         }
     }
+    .info{
+        display:flex;
+        justify-content:space-between;
+        background-color:whitesmoke;
+        box-shadow: 0 5px 10px gray;
+        padding: 10px 15px;
+        color:black;
+        font-family:sans-serif;
+        text-align:center;
+        border-radius:5px;
+        
+    }
+    .info h6{
+        font-size:14px;
+        font-weight:bold;
+    }
     </style>
 </head>
 
@@ -83,7 +99,10 @@
     <div class="reg_form">
         <h5 class="text-center title p-2">STUDENT BASIC INFORMATION</h3>
             <div class="form-content">
-
+              <div class="info">
+              <h6 class="">Email: {{$student->email}}</h6>
+              <h6 class="">Birth certificate no: {{$student->bcn}}</h6>
+              </div>
 
                 <br>
                 <form action="{{route('studentinfo')}}" method="post">
@@ -120,7 +139,7 @@
                     <input type="number" name="roll" class="form-control" min="100000" placeholder="Enter Roll"><br>
 
                    
-                    <input type="hidden" name="id" value="{{$student}}" class="form-control" >
+                    <input type="hidden" name="id" value="{{$student->id}}" class="form-control" >
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="SUBMIT INFORMATION">

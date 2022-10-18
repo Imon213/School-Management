@@ -221,7 +221,7 @@
             });
             $(document).on('click', '#reg', function(e) {
                 e.preventDefault();
-                let email = $('#email').val();
+                let email = $('#em').val();
                 let type = $('#type').val();
                 let bcn = $('#bcn').val();
                 let password = $('#password').val();

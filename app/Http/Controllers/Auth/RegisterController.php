@@ -53,13 +53,8 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     { 
-            //  $validate = $request->validate([
-            //     'email' => 'email',
-            //     'type' => 'required',
-            //     'bcn' => 'required',
-            //     'password' => 'required| min:8 | max:12'
-            // ]);
-            $admin = Registration::where('email', $request->email)
+        
+            $admin = registration::where('email', $request->email)
                 ->first();
 
 
@@ -95,7 +90,8 @@ class RegisterController extends Controller
     public function user(Request $request){
         $user = Registration::where('id',$request->id)->first();
         if($user->type=='student'){
-        return view('Backend.student')->with('student', $request->id);
+        return view('Backend.student')
+                                 ->with('student', $user);
     }
     elseif($user->type=='teacher'){
         return view('Backend.teacher')->with('teacher', $request->id);
