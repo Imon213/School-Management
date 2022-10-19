@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Routine;
 use App\Models\Program;
 use App\Models\Result;
+use App\Models\Student;
 class Subject extends Model
 {
     use HasFactory;
@@ -25,6 +26,7 @@ class Subject extends Model
      public function result(){
         return $this->hasMany(Result::class);
     }
+  
 
 
 

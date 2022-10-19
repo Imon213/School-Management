@@ -148,7 +148,7 @@
 
                             @else
                             <td class="text-primary">{{$users->status}}</td>
-                            <td><a class="btn btn-primary" href="#"><i class="fa-solid fa-user-pen"></i></a></td>
+                            <td><a class="btn btn-primary" href="/edituser/{{$users->id}}"><i class="fa-solid fa-user-pen"></i></a></td>
                             <td><a href="javascript:void(0)" id="show-modal"
                                     data-url="{{route('delete_reg', $users->id)}}" class="btn btn-danger"><i
                                         class="fa-solid fa-trash"></i></a></td>

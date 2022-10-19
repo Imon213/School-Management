@@ -14,6 +14,11 @@ class Class_model extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    public function sStudent()
+    {
+        return $this->hasMany(Student::class,);
+    }
+
      public function active_student()
     {
         return $this->belongsTo(Active_student::class);
