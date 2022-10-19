@@ -11,9 +11,9 @@ class Registration extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    // public function student(){
-    //     return $this->hasMany(Student::class);
-    // }
+    public function student(){
+        return $this->hasOne(Student::class);
+    }
 
     
     //  public function session()

@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Auth\Registration;
+use App\Models\Session;
+use App\Models\Class_model;
 return new class extends Migration
 {
     /**
@@ -24,6 +26,8 @@ return new class extends Migration
                 $table->string('roll');
                  $table->string('phone');
                   $table->foreignIdFor(Registration::class);
+                  $table->foreignIdFor(Session::class);
+                  $table->foreignIdFor(Class_model::class);
         });
     }
 
