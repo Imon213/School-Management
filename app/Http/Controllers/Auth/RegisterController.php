@@ -11,6 +11,8 @@ use App\Mail\SendMail;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Admin;
+use App\Models\Session;
+ use App\Models\Class_model;
 
 
 class RegisterController extends Controller
@@ -54,7 +56,10 @@ class RegisterController extends Controller
     public function register(Request $request)
     { 
 
-            $admin = Registration::where('email', $request->email)
+        
+            $admin = registration::where('email', $request->email)
+
+
                 ->first();
 
 
@@ -89,8 +94,13 @@ class RegisterController extends Controller
 
     public function user(Request $request){
         $user = Registration::where('id',$request->id)->first();
+        $session = Session::get();
+        $class = Class_model::get();
         if($user->type=='student'){
-        return view('Backend.student')->with('student', $request->id);
+        return view('Backend.student')
+                                 ->with('session',$session)
+                                 ->with('student', $user)
+                                 ->with('class',$class);
     }
     elseif($user->type=='teacher'){
         return view('Backend.teacher')->with('teacher', $request->id);
@@ -115,6 +125,8 @@ class RegisterController extends Controller
                 $user->address = $request->address;
                 $user->roll = $request->roll;
                 $user->registration_id = $reg->id;
+                $user->session_id=$request->session;
+                $user->class_model_id = $request->class;
                 $user->save();
                 return redirect()->route('user');
             }
@@ -145,18 +157,16 @@ class RegisterController extends Controller
                 return redirect()->route('user');
                 }
 
-        
+
     }
 
     public function edituser(Request $request){
-        $user = Registration::where('id', $request->id)->first();
-        if($user->type=='student'){
-            $student = Student::where('registration_id', $request->id)->first();
-        return view('Backend.editStudent')->with('student', $student);
-    }
-    else{
-        echo "failed";
-    }
+
+        $student = Registration::where('id', $request->id)->first();
+        $class = Class_model::all();
+       return view('Backend.editStudent')->with('student',$student)
+                                          ->with('class', $class);
+      
     }
 
 }
