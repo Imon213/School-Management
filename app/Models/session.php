@@ -6,17 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Auth\Registration;
 use App\Models\Active_student;
-use App\Models\Result;
+use App\Models\Student;
 
 
     //  public function result()
     // {
     //     return $this->belongsTo(result::class);
     // }
-    //  public function reg()
-    // {
-    //     return $this->belongsTo(Registration::class);
-    // }
+     
 
 
 class Session extends Model
@@ -27,8 +24,9 @@ class Session extends Model
     {
         return $this->belongsTo(Active_student::class);
     }
-    public function result(){
-        return $this->hasMany(Result::class);
+    public function sStudent()
+    {
+        return $this->hasOne(Student::class);
     }
 
 }

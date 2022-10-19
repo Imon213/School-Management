@@ -61,6 +61,7 @@
         font-size: 13px;
 
     }
+
     .academic {
         display: flex;
         justify-content: space-between;
@@ -96,52 +97,64 @@
                     @csrf
                     <div class="academic">
                         <select name="session" id="session" class="form-select" aria-label="Default select example">
-                            <option selected>Select Session</option>
+                            @foreach($session as $c)
+
+                            <option @if($student->student->sSession->session_name == $c->session_name) selected @endif
+                                >{{$c->session_name}}</option>
+
+                            @endforeach
                         </select>
 
                         <select name="class" id="class" class="form-select" aria-label="Default select example">
                             @foreach($class as $c)
-                           
-                            <option
-                            @if($student->student->sClass->class_name == $c->class_name) selected @endif
-                            >{{$c->class_name}}</option>
+
+                            <option @if($student->student->sClass->class_name == $c->class_name) selected @endif
+                                >{{$c->class_name}}</option>
 
                             @endforeach
                         </select>
                     </div>
 
                     <label>Student's full name</label>
-                    <input type="text" value="{{$student->student->name}}" name="name" class="form-control" placeholder="Enter Name"><br>
+                    <input type="text" value="{{$student->student->name}}" name="name" class="form-control"
+                        placeholder="Enter Name"><br>
 
 
                     <label>Student's father name:</label>
-                    <input type="text" value="{{$student->student->fname}}" name="fname" class="form-control" placeholder="Father Name"><br>
+                    <input type="text" value="{{$student->student->fname}}" name="fname" class="form-control"
+                        placeholder="Father Name"><br>
 
                     <label>Student's mother name:</label>
-                    <input type="text" value="{{$student->student->mname}}" name="mname" class="form-control" placeholder="Mother Name"><br>
+                    <input type="text" value="{{$student->student->mname}}" name="mname" class="form-control"
+                        placeholder="Mother Name"><br>
 
 
                     <label>Student's phone number</label>
-                    <input type="phone" value="{{$student->student->phone}}" name="phone" class="form-control" placeholder="Phone Number"><br>
+                    <input type="phone" value="{{$student->student->phone}}" name="phone" class="form-control"
+                        placeholder="Phone Number"><br>
 
                     <label for="birthdaytime">Student's date of birth:</label>
                     <input class="form-control" value="{{$student->dob}}" type="date" name="dob" id="birthdaytime"><br>
 
                     <label for="birthdaytime">Student's gender:</label>
-                    <input @if($student->student->gender=='male') checked="checked" @endif class="form-check-input" type="radio" value="{{$student->gender}}" name="gender" value="male"> Male
-                    <input @if($student->student->gender=='female') checked="checked" @endif class="form-check-input" type="radio" value="{{$student->gender}}" name="gender" value="female"> Female
+                    <input @if($student->student->gender=='male') checked="checked" @endif class="form-check-input"
+                    type="radio" value="{{$student->gender}}" name="gender" value="male"> Male
+                    <input @if($student->student->gender=='female') checked="checked" @endif class="form-check-input"
+                    type="radio" value="{{$student->gender}}" name="gender" value="female"> Female
 
                     <br>
                     <br>
                     <label for="address">Student's current address:</label>
-                    <input type="address" value="{{$student->student->address}}" name="address" class="form-control" placeholder="Current Address"><br>
+                    <input type="address" value="{{$student->student->address}}" name="address" class="form-control"
+                        placeholder="Current Address"><br>
 
 
                     <label>Student's roll no:</label>
-                    <input type="number" value="{{$student->student->roll}}" name="roll" class="form-control" min="100000" placeholder="Enter Roll"><br>
+                    <input type="number" value="{{$student->student->roll}}" name="roll" class="form-control"
+                        min="100000" placeholder="Enter Roll"><br>
 
-                   
-                    <input type="hidden" name="id" value="{{$student->student->id}}" class="form-control" >
+
+                    <input type="hidden" name="id" value="{{$student->student->id}}" class="form-control">
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="EDIT INFORMATION">
