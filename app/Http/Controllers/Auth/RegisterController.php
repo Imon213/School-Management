@@ -11,7 +11,7 @@ use App\Mail\SendMail;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Admin;
-use App\Models\Session;
+use App\Models\session;
  use App\Models\Class_model;
 
 
@@ -164,7 +164,9 @@ class RegisterController extends Controller
 
         $student = Registration::where('id', $request->id)->first();
         $class = Class_model::all();
+        $session = session::all();
        return view('Backend.editStudent')->with('student',$student)
+                                          ->with('session',$session)
                                           ->with('class', $class);
       
     }
