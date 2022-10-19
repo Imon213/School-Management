@@ -169,4 +169,25 @@ class RegisterController extends Controller
       
     }
 
+    public function edituserSubmit(Request $request){
+
+        $student = Registration::where('id', $request->id)->first();
+        $class = Class_model::all();
+
+                $user = new  Student(); 
+                $user->name = $request->name;
+                $user->fname = $request->fname;
+                $user->mname = $request->mname;
+                $user->phone = $request->phone;
+                $user->dob = $request->dob;
+                $user->gender = $request->gender;
+                $user->address = $request->address;
+                $user->roll = $request->roll;
+                $user->registration_id = $reg->id;
+                $user->session_id=$request->session;
+                $user->class_model_id = $request->class;
+                $user->save();
+      
+    }
+
 }
