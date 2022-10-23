@@ -103,10 +103,10 @@ class RegisterController extends Controller
                                  ->with('class',$class);
     }
     elseif($user->type=='teacher'){
-        return view('Backend.teacher')->with('teacher', $request->id);
+        return view('Backend.teacher')->with('teacher', $user);
     }
     else{
-        return view('Backend.adminreg')->with('admin', $request->id);
+        return view('Backend.adminreg')->with('admin', $user);
     }
     }
     public function userinfo(Request $request){
@@ -165,18 +165,30 @@ class RegisterController extends Controller
         $student = Registration::where('id', $request->id)->first();
         $class = Class_model::all();
         $session = session::all();
+        if($student->type=='student'){
        return view('Backend.editStudent')->with('student',$student)
                                           ->with('session',$session)
                                           ->with('class', $class);
-      
+                                      }
+
+          elseif($student->type=='teacher'){
+        return view('Backend.editTeacher')->with('teacher', $student);
+    }
+    elseif($student->type=='admin'){
+            // return $student->admin;
+        return view('Backend.editAdmin')->with('admin', $student);
     }
 
-    public function edituserSubmit(Request $request){
+        }
+    
+      
+    
 
-        $student = Registration::where('id', $request->id)->first();
+    public function editStudentSubmit(Request $request){
+
+        $user = Student::where('id', $request->id)->first();
         $class = Class_model::all();
-
-                $user = new  Student(); 
+        $session = session::all();
                 $user->name = $request->name;
                 $user->fname = $request->fname;
                 $user->mname = $request->mname;
@@ -185,10 +197,42 @@ class RegisterController extends Controller
                 $user->gender = $request->gender;
                 $user->address = $request->address;
                 $user->roll = $request->roll;
-                $user->registration_id = $reg->id;
+                $user->registration_id = $request->registration_id;
                 $user->session_id=$request->session;
                 $user->class_model_id = $request->class;
                 $user->save();
+                return back();
+      
+    }
+
+    public function editTeacherSubmit(Request $request){
+
+        $user = Teacher::where('id', $request->id)->first();
+        $class = Class_model::all();
+        $session = session::all();
+               $user->name = $request->name;
+                $user->dob = $request->dob;
+                $user->gender = $request->gender;
+                $user->qualificattion = $request->qualification;
+                $user->phone = $request->phone;
+                $user->teach_id = $request->teach_id;
+                $user->registration_id = $request->registration_id;
+                $user->save();
+                return back();
+      
+    }
+        public function editAdminSubmit(Request $request){
+
+        $user = Admin::where('id', $request->id)->first();
+        $class = Class_model::all();
+        $session = session::all();
+                $user->name = $request->name;
+                $user->dob = $request->dob;
+                $user->gender = $request->gender;
+                $user->phone = $request->phone;
+                $user->registration_id = $request->registration_id;
+                $user->save();
+                return back();
       
     }
 

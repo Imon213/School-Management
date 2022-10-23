@@ -14,9 +14,9 @@ class Admin extends Model
     use HasFactory;
 
     public $timestamps = false;
-    public function reg()
+    public function areg()
     {
-        return $this->belongsTo(Registration::class);
+        return $this->belongsTo(Registration::class,'registration_id');
     }
 
 }

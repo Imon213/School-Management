@@ -1,3 +1,5 @@
+@extends('Backend.admin')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,6 +78,24 @@
             margin: 0;
         }
     }
+
+        .info {
+        display: flex;
+        justify-content: space-between;
+        background-color: whitesmoke;
+        box-shadow: 0 5px 10px gray;
+        padding: 10px 15px;
+        color: black;
+        font-family: sans-serif;
+        text-align: center;
+        border-radius: 5px;
+
+    }
+
+    .info h6 {
+        font-size: 14px;
+        font-weight: bold;
+    }
     </style>
 </head>
 
@@ -83,7 +103,10 @@
     <div class="reg_form">
         <h5 class="text-center title p-2">TEACHER BASIC INFORMATION</h3>
             <div class="form-content">
-
+                <div class="info">
+                    <h6 class="">Email: {{$teacher->email}}</h6>
+                    <h6 class="">NID: {{$teacher->bcn}}</h6>
+                </div>
 
                 <br>
                 <form action="{{route('teacherinfo')}}" method="post">
@@ -113,7 +136,7 @@
                     <input type="number" name="teach_id" class="form-control" min="100000" placeholder="Enter Roll"><br>
 
                    
-                    <input type="hidden" name="id" value="{{$teacher}}" class="form-control" >
+                    <input type="hidden" name="id" value="{{$teacher->id}}" class="form-control" >
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="SUBMIT INFORMATION">
@@ -123,3 +146,4 @@
 </body>
 
 </html>
+@endsection

@@ -1,3 +1,5 @@
+@extends('Backend.admin')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,34 +88,37 @@
 
 
                 <br>
-                <form action="{{route('teacherinfo')}}" method="post">
+                <form action="{{route('editteacher')}}" method="post">
                     @csrf
 
                     <label>Teacher's full name</label>
-                    <input type="text" value="{{$teacher->name}}" name="name" class="form-control" placeholder="Enter Name"><br>
+                    <input type="text" value="{{$teacher->teacher->name}}" name="name" class="form-control" placeholder="Enter Name"><br>
 
 
                     <label>Teachers's phone number</label>
-                    <input type="phone" value="{{$teacher->phone}}"   name="phone" class="form-control" placeholder="Phone Number"><br>
+                    <input type="phone" value="{{$teacher->teacher->phone}}"   name="phone" class="form-control" placeholder="Phone Number"><br>
 
                     <label for="birthdaytime">Teacher's date of birth:</label>
-                    <input class="form-control" value="{{$teacher->dob}}"  type="date" name="dob" id="birthdaytime"><br>
+                    <input class="form-control" value="{{$teacher->teacher->dob}}"  type="date" name="dob" id="birthdaytime"><br>
 
                     <label for="birthdaytime">Teacher's gender:</label>
-                    <input class="form-check-input" type="radio" name="gender" value="male"> Male
-                    <input class="form-check-input" type="radio" name="gender" value="female"> Female
+                    <input @if($teacher->teacher->gender=='male') checked="checked" @endif class="form-check-input"
+                    type="radio"  name="gender" value="male"> Male
+                    <input @if($teacher->teacher->gender=='female') checked="checked" @endif class="form-check-input"
+                    type="radio" name="gender" value="female"> Female
 
                     <br>
                     <br>
                     <label for="address">Teachers Qualification:</label>
-                    <input type="address" name="qualification" class="form-control" value="{{$teacher->address}}"  placeholder="Current Address"><br>
+                    <input type="address" name="qualification" class="form-control" value="{{$teacher->teacher->qualificattion}}"  placeholder="Current Address"><br>
 
 
                     <label>Teacher's Id:</label>
-                    <input type="number" name="teach_id" class="form-control" min="100000" value="{{$teacher->teach_id}}"  placeholder="Enter Roll"><br>
+                    <input type="number" name="teach_id" class="form-control" min="100000" value="{{$teacher->teacher->teach_id}}"  placeholder="Enter Roll"><br>
 
                    
-                    <input type="hidden" name="id" value="{{$teacher}}" class="form-control" >
+                    <input type="hidden" name="id" value="{{$teacher->teacher->id}}" class="form-control" >
+                    <input type="hidden" name="registration_id" value="{{$teacher->teacher->registration_id}}" class="form-control" >
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="SUBMIT INFORMATION">
@@ -123,3 +128,4 @@
 </body>
 
 </html>
+@endsection
