@@ -15,9 +15,9 @@ class Teacher extends Model
 
 
     public $timestamps = false;
-     public function reg()
+     public function treg()
     {
-        return $this->belongsTo(Registration::class);
+        return $this->belongsTo(Registration::class,'registration_id');
     }
 
 }

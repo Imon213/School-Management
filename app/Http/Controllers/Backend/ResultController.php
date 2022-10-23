@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
+use App\Models\Section;
 class ResultController extends Controller
 {
     public function GetResult(){
@@ -44,6 +45,14 @@ class ResultController extends Controller
       }
       return redirect()->route('marksdisttibution');
      
+    }
+
+      public function Attendance(){
+       $var = Session::all();
+       $v = Subject::all();
+       $f=Class_model::all();
+       $r=Section::all();
+      return view('Backend.Teacher.attendance')->with('ss', $var)->with('v', $v)->with('d',$f)->with('r',$r);
     }
 
 }

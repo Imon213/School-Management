@@ -78,58 +78,47 @@
             margin: 0;
         }
     }
-        .info {
-        display: flex;
-        justify-content: space-between;
-        background-color: whitesmoke;
-        box-shadow: 0 5px 10px gray;
-        padding: 10px 15px;
-        color: black;
-        font-family: sans-serif;
-        text-align: center;
-        border-radius: 5px;
-
-    }
-
-    .info h6 {
-        font-size: 14px;
-        font-weight: bold;
-    }
     </style>
 </head>
 
 <body>
     <div class="reg_form">
-        <h5 class="text-center title p-2">Admin BASIC INFORMATION</h3>
+        <h5 class="text-center title p-2">TEACHER BASIC INFORMATION</h3>
             <div class="form-content">
-                    <div class="info">
-                    <h6 class="">Email: {{$admin->email}}</h6>
-                    <h6 class="">NID: {{$admin->bcn}}</h6>
-                </div>
+
 
                 <br>
-                <form action="{{route('admininfo')}}" method="post">
+                <form action="{{route('editteacher')}}" method="post">
                     @csrf
 
-                    <label>Admin's full name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name"><br>
+                    <label>Teacher's full name</label>
+                    <input type="text" value="{{$teacher->teacher->name}}" name="name" class="form-control" placeholder="Enter Name"><br>
 
 
-                    <label>Admin's phone number</label>
-                    <input type="phone" name="phone" class="form-control" placeholder="Phone Number"><br>
+                    <label>Teachers's phone number</label>
+                    <input type="phone" value="{{$teacher->teacher->phone}}"   name="phone" class="form-control" placeholder="Phone Number"><br>
 
-                    <label for="birthdaytime">Admin's date of birth:</label>
-                    <input class="form-control" type="date" name="dob" id="birthdaytime"><br>
+                    <label for="birthdaytime">Teacher's date of birth:</label>
+                    <input class="form-control" value="{{$teacher->teacher->dob}}"  type="date" name="dob" id="birthdaytime"><br>
 
-                    <label for="birthdaytime">Admin's gender:</label>
-                    <input class="form-check-input" type="radio" name="gender" value="male"> Male
-                    <input class="form-check-input" type="radio" name="gender" value="female"> Female
+                    <label for="birthdaytime">Teacher's gender:</label>
+                    <input @if($teacher->teacher->gender=='male') checked="checked" @endif class="form-check-input"
+                    type="radio"  name="gender" value="male"> Male
+                    <input @if($teacher->teacher->gender=='female') checked="checked" @endif class="form-check-input"
+                    type="radio" name="gender" value="female"> Female
 
                     <br>
                     <br>
+                    <label for="address">Teachers Qualification:</label>
+                    <input type="address" name="qualification" class="form-control" value="{{$teacher->teacher->qualificattion}}"  placeholder="Current Address"><br>
+
+
+                    <label>Teacher's Id:</label>
+                    <input type="number" name="teach_id" class="form-control" min="100000" value="{{$teacher->teacher->teach_id}}"  placeholder="Enter Roll"><br>
 
                    
-                    <input type="hidden" name="id" value="{{$admin->id}}" class="form-control" >
+                    <input type="hidden" name="id" value="{{$teacher->teacher->id}}" class="form-control" >
+                    <input type="hidden" name="registration_id" value="{{$teacher->teacher->registration_id}}" class="form-control" >
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="SUBMIT INFORMATION">

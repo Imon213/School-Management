@@ -1,5 +1,3 @@
-@extends('Backend.admin')
-@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,23 +76,6 @@
             margin: 0;
         }
     }
-        .info {
-        display: flex;
-        justify-content: space-between;
-        background-color: whitesmoke;
-        box-shadow: 0 5px 10px gray;
-        padding: 10px 15px;
-        color: black;
-        font-family: sans-serif;
-        text-align: center;
-        border-radius: 5px;
-
-    }
-
-    .info h6 {
-        font-size: 14px;
-        font-weight: bold;
-    }
     </style>
 </head>
 
@@ -102,34 +83,34 @@
     <div class="reg_form">
         <h5 class="text-center title p-2">Admin BASIC INFORMATION</h3>
             <div class="form-content">
-                    <div class="info">
-                    <h6 class="">Email: {{$admin->email}}</h6>
-                    <h6 class="">NID: {{$admin->bcn}}</h6>
-                </div>
+
 
                 <br>
-                <form action="{{route('admininfo')}}" method="post">
+                <form action="{{route('editadmin')}}" method="post">
                     @csrf
 
                     <label>Admin's full name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter Name"><br>
+                    <input type="text"  value="{{$admin->admin->name}}" name="name" class="form-control" placeholder="Enter Name"><br>
 
 
                     <label>Admin's phone number</label>
-                    <input type="phone" name="phone" class="form-control" placeholder="Phone Number"><br>
+                    <input type="phone" value="{{$admin->admin->phone}}" name="phone" class="form-control" placeholder="Phone Number"><br>
 
                     <label for="birthdaytime">Admin's date of birth:</label>
-                    <input class="form-control" type="date" name="dob" id="birthdaytime"><br>
+                    <input class="form-control" type="date" name="dob" id="birthdaytime" value="{{$admin->admin->dob}}"><br>
 
                     <label for="birthdaytime">Admin's gender:</label>
-                    <input class="form-check-input" type="radio" name="gender" value="male"> Male
-                    <input class="form-check-input" type="radio" name="gender" value="female"> Female
-
+                    <input @if($admin->admin->gender=='male') checked="checked" @endif class="form-check-input"
+                    type="radio"  name="gender" value="male"> Male
+                    <input @if($admin->admin->gender=='female') checked="checked" @endif class="form-check-input"
+                    type="radio" name="gender" value="female"> Female
                     <br>
                     <br>
 
                    
-                    <input type="hidden" name="id" value="{{$admin->id}}" class="form-control" >
+                    <input type="hidden" name="id" value="{{$admin->admin->id}}" class="form-control" >
+
+                    <input type="hidden" name="registration_id" value="{{$admin->admin->registration_id}}" class="form-control">
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="SUBMIT INFORMATION">
@@ -139,4 +120,3 @@
 </body>
 
 </html>
-@endsection
