@@ -8,6 +8,7 @@ use App\Models\Active_student;
 use App\Models\Routine;
 use App\Models\Program;
 use App\Models\Result;
+use App\Models\subject;
 
 
 class Class_model extends Model
@@ -32,6 +33,9 @@ class Class_model extends Model
     }
     public function result(){
         return $this->hasMany(Result::class);
+    }
+         public function sSubject(){
+        return $this->hasMany(subject::class);
     }
 
 }

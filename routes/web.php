@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Backend\StoryController;
-
+use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\videoController;
 
 use App\Http\Controllers\Frontend\BookManageController;
@@ -174,10 +174,22 @@ Route::get('/pagination/paginate-data', [RegisterController::class, 'Pagination'
 Route::get('/student/{id}',[RegisterController::class, 'user']);
 Route::post('/studentinfo',[RegisterController::class, 'userinfo'])->name('studentinfo');
 
-Route::get('/teacher/{id}',[RegisterController::class, 'user']);
+// Route::get('/teacher/{id}',[RegisterController::class, 'user']);
 Route::post('/teacherinfo',[RegisterController::class, 'userinfo'])->name('teacherinfo');
 
-Route::get('/adminreg/{id}',[RegisterController::class, 'user']);
+// Route::get('/adminreg/{id}',[RegisterController::class, 'user']);
 Route::post('/admininfo',[RegisterController::class, 'userinfo'])->name('admininfo');
 
 Route::get('/edituser/{id}',[RegisterController::class, 'edituser'])->name('edituser');
+Route::post('/editstudent',[RegisterController::class, 'editStudentSubmit'])->name('editstudent');
+Route::post('/editteacher',[RegisterController::class, 'editTeacherSubmit'])->name('editteacher');
+
+Route::post('/editadmin',[RegisterController::class, 'editAdminSubmit'])->name('editadmin');
+
+//Teacher
+Route::get('/teacher', function () {
+	return view('Backend/Teacher/teacherDashboard');
+});
+Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
+Route::get('/filter',[AttendanceController::class,'filter'])->name('filter'); 
+Route::get('/takeatten',[AttendanceController::class,'takeatten'])->name('takeatten'); 

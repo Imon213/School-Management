@@ -93,22 +93,22 @@
 
 
                 <br>
-                <form action="{{route('studentinfo')}}" method="post">
+                <form action="{{route('editstudent')}}" method="post">
                     @csrf
                     <div class="academic">
                         <select name="session" id="session" class="form-select" aria-label="Default select example">
                             @foreach($session as $c)
 
-                            <option @if($student->student->sSession->session_name == $c->session_name) selected @endif
+                            <option value="{{$c->id}}" @if($student->student->sSession->session_name == $c->session_name) selected @endif
                                 >{{$c->session_name}}</option>
 
                             @endforeach
                         </select>
 
-                        <select name="class" id="class" class="form-select" aria-label="Default select example">
+                        <select  name="class" id="class" class="form-select" aria-label="Default select example">
                             @foreach($class as $c)
 
-                            <option @if($student->student->sClass->class_name == $c->class_name) selected @endif
+                            <option value="{{$c->id}}" @if($student->student->sClass->class_name == $c->class_name) selected @endif
                                 >{{$c->class_name}}</option>
 
                             @endforeach
@@ -138,7 +138,11 @@
 
                     <label for="birthdaytime">Student's gender:</label>
                     <input @if($student->student->gender=='male') checked="checked" @endif class="form-check-input"
+
                     type="radio" name="gender" value="male"> Male
+
+                    type="radio"  name="gender" value="male"> Male
+
                     <input @if($student->student->gender=='female') checked="checked" @endif class="form-check-input"
                     type="radio" name="gender" value="female"> Female
 
@@ -155,6 +159,8 @@
 
 
                     <input type="hidden" name="id" value="{{$student->student->id}}" class="form-control">
+
+                    <input type="hidden" name="registration_id" value="{{$student->student->registration_id}}" class="form-control">
 
                     <div class="text-center">
                         <input type="submit" class="btn btn-primary sign_up_btn" value="EDIT INFORMATION">

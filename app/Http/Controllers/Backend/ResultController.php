@@ -9,6 +9,7 @@ use App\Models\Subject;
 use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
+use App\Models\Section;
 class ResultController extends Controller
 {
     public function GetResult(){
@@ -45,5 +46,7 @@ class ResultController extends Controller
       return redirect()->route('marksdisttibution');
      
     }
+
+
 
 }

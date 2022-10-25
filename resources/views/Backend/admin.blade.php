@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -555,7 +556,7 @@ a[href*="#followme"]::before {
       </ul>
     </li>
 
-       <li><a href="{{route('registration')}}">Registration</a></li>
+       <li><a href="{{route('user')}}">Registration</a></li>
        <li><a href="#events">Events</a></li>
        <li><a href="#team">Team</a></li>
        <li class="dropdown">
