@@ -44,7 +44,7 @@
 <body>
     <div class="container">
        <div class="b-title bg-secondary">Marking Distribution</div>
-     <form action="{{route('marksdisttibution')}}" method="post">
+     <form action="{{route('marksdisttibution')}}" id="form" method="post">
         @csrf
      <div class="basic-content">
             <div class="row">
@@ -114,12 +114,11 @@
         <input style="width:20%; margin: 0 auto;" type="submit" value="SUBMIT" class="btn btn-success"/>
      </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript">
-    document.getElementById('add-more').addEventListener('click', function(event) {
-        event.preventDefault();
-        const parentItem = document.getElementById('item');
-        const newItem = document.createElement('li');
-        newItem.innerHTML = `<div class="row">
+   $('#add-more').click(function(e){
+    e.preventDefault();
+    var newItem = $('#item').append(`<div class="row">
                 <div class="col-md-5">
                     <input name="title[]" type="text" class="form-control" placeholder="Enter title of marks">
                 </div>
@@ -129,14 +128,18 @@
                 <div class="col-md-3">
                     <input name="marks[]" type="text" class="form-control" placeholder="Enter marks">
                 </div>
-                
+                <div id="remove" class="col-md-1">
+                <button style="border-radius: 100%;"  name="" class="btn btn-primary"><i class="fa-solid fa-minus"></i></button>
+                </div>
             </div>
             <br>
-           `;
-        parentItem.appendChild(newItem);
-
-
-    });
+           `);
+   })
+   $('ul').on('click','#remove',function(e){
+    e.preventDefault();
+  
+    $(this).parent().remove();
+   })
     </script>
 </body>
 

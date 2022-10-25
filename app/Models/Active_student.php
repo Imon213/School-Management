@@ -11,7 +11,7 @@ class Active_student extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    public function student(){
+    public function Astudent(){
         return $this->hasMany(Student::class);
     }
     public function session(){

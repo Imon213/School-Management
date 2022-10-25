@@ -23,7 +23,7 @@ class Student extends Model
   
     public function reg()
     {
-        return $this->belongsTo(Registration::class);
+        return $this->hasOne(Registration::class,'registration_id');
     }
     public function sClass()
     {

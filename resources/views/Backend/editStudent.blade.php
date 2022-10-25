@@ -134,13 +134,13 @@
                         placeholder="Phone Number"><br>
 
                     <label for="birthdaytime">Student's date of birth:</label>
-                    <input class="form-control" value="{{$student->dob}}" type="date" name="dob" id="birthdaytime"><br>
+                    <input class="form-control" value="{{$student->student->dob}}" type="date" name="dob" id="birthdaytime"><br>
 
                     <label for="birthdaytime">Student's gender:</label>
                     <input @if($student->student->gender=='male') checked="checked" @endif class="form-check-input"
-                    type="radio" value="{{$student->gender}}" name="gender" value="male"> Male
+                    type="radio" name="gender" value="male"> Male
                     <input @if($student->student->gender=='female') checked="checked" @endif class="form-check-input"
-                    type="radio" value="{{$student->gender}}" name="gender" value="female"> Female
+                    type="radio" name="gender" value="female"> Female
 
                     <br>
                     <br>
