@@ -22,6 +22,7 @@ return new class extends Migration
              $table->foreignIdFor(Class_model::class);
              $table->foreignIdFor(Session::class);
               $table->foreignIdFor(subject::class);
+              $table->string('date');
               $table->string('attendance');
         });
     }

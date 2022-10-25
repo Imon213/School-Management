@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Backend\StoryController;
-
+use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\videoController;
 
 use App\Http\Controllers\Frontend\BookManageController;
@@ -188,4 +188,6 @@ Route::post('/editadmin',[RegisterController::class, 'editAdminSubmit'])->name('
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
-Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
+Route::get('/filter',[AttendanceController::class,'filter'])->name('filter'); 
+Route::get('/takeatten',[AttendanceController::class,'takeatten'])->name('takeatten'); 
