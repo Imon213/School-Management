@@ -33,6 +33,8 @@ Route::get('/user', [RegisterController::class, 'Users'])->name('user');
 Route::get('/get.user', [RegisterController::class, 'GetRegisteredUser'])->name('get_user');
 Route::get('/delete_user/{id}', [RegisterController::class, 'DeleteUser'])->name('delete_user');
 Route::get('/delete_reg/{id}', [RegisterController::class, 'DeleteReg'])->name('delete_reg');
+Route::get('/active_student', [RegisterController::class, 'ActiveStudent'])->name('active_student');
+Route::get('/search_active_student', [RegisterController::class, 'SearchActiveStudent'])->name('search_active_student');
 //Story Controller
 
 Route::get('/upload_story', [StoryController::class, 'Story'])->name('story_upload');

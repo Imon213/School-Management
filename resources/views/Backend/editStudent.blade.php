@@ -138,7 +138,11 @@
 
                     <label for="birthdaytime">Student's gender:</label>
                     <input @if($student->student->gender=='male') checked="checked" @endif class="form-check-input"
+
+                    type="radio" name="gender" value="male"> Male
+
                     type="radio"  name="gender" value="male"> Male
+
                     <input @if($student->student->gender=='female') checked="checked" @endif class="form-check-input"
                     type="radio" name="gender" value="female"> Female
 
