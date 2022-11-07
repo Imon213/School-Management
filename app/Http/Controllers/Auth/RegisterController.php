@@ -248,26 +248,55 @@ class RegisterController extends Controller
     }
     public function SearchActiveStudent(Request $request){
        
-        $query = $request->get('query');
-       if($query != '')
-       {
-        $user = Student::join('Class_model','class_name')
-                             ->where('name','like','%'.$query.'%')
-                             ->orWhere('class_name','like','%'.$query.'%')
-                             ->get();
+      
+      
+        $user = Student::where('class_model_id',$request->c_id)
+                        ->orwhere('session_id',$request->s_id)
+                        ->get();
+        if($user->count() > 0)
+        {
+          return view('Backend.active_student_pagination',compact('user'));
+        }  
+        else{
+            return'
+            <div class="text-center" style="height:200px; display:grid; place-items:center;">
+            <i class="fa-thin fa-face-monocle"></i>
+            <h3 style="font-size:30px; color:#183153;font-weight:500;" > Wrong Information Found. Try To Filter Again..........<i class="fa-solid fa-feather"></i></h3>
+            </div>
+            ';
+        }                      
+      
+       
+        
+    }
+    public function AddActiveStudent(Request $request)
+    {
+        $exist = Active_student::where('student_id',$request->st_id)
+                                   ->where('session_id',$request->s_id)
+                                   ->where('class_id',$request->c_id)
+                                   ->first();
+        if($exist->count()>0)
+        {
+           $exist->session_id=$request->s_id;
+           $exist->class_id=$request->c_id;
+           if($exist)
+           {
+            $exist->save();
+            return "updated";
+           }
+        }
+        else
+        {
+            $user = new Active_student();
+        $user->student_id=$request->s_id;
+        $user->class_model_id=$request->c_id;
+        $user->session_id=$request->s_id;
         if($user)
         {
-          return view('Backend.active_student_pagination',compact('user'))->render();
-        }                        
-       }
-       else
-       {
-        $student = Registration::where('type','student')->where('status','active')->get();
-        $session = session::all();
-        $class = Class_model::all();
-        return 0;
-       }
-        
+            $user->save();
+            return "success";
+        }
+        }
     }
 
 }

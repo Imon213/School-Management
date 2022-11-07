@@ -35,6 +35,7 @@ Route::get('/delete_user/{id}', [RegisterController::class, 'DeleteUser'])->name
 Route::get('/delete_reg/{id}', [RegisterController::class, 'DeleteReg'])->name('delete_reg');
 Route::get('/active_student', [RegisterController::class, 'ActiveStudent'])->name('active_student');
 Route::get('/search_active_student', [RegisterController::class, 'SearchActiveStudent'])->name('search_active_student');
+Route::get('/add_active_student', [RegisterController::class, 'AddActiveStudent'])->name('add_active_student');
 //Story Controller
 
 Route::get('/upload_story', [StoryController::class, 'Story'])->name('story_upload');
@@ -193,3 +194,5 @@ Route::get('/teacher', function () {
 Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
 Route::get('/filter',[AttendanceController::class,'filter'])->name('filter'); 
 Route::get('/takeatten',[AttendanceController::class,'takeatten'])->name('takeatten'); 
+Route::get('/atten_submit',[AttendanceController::class,'AttenSubmit'])->name('atten_submit'); 
+Route::get('/atten_record',[AttendanceController::class,'AttenRecord'])->name('atten_record'); 

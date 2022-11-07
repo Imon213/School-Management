@@ -10,7 +10,7 @@ use App\Models\Class_model;
 class Active_student extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    
     public function Astudent(){
         return $this->hasMany(Student::class);
     }
