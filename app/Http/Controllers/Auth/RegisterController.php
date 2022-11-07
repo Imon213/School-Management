@@ -13,6 +13,7 @@ use App\Models\Teacher;
 use App\Models\Admin;
 use App\Models\session;
  use App\Models\Class_model;
+ use App\Models\Active_student;
 
 
 class RegisterController extends Controller
@@ -235,6 +236,39 @@ class RegisterController extends Controller
                 $user->save();
                 return back();
       
+    }
+    public function ActiveStudent(){
+       
+        $student = Registration::where('type','student')->where('status','active')->get();
+        $session = session::all();
+        $class = Class_model::all();
+        return view('Backend.active_student')
+                                ->with('session',$session)
+                                ->with('class',$class)
+                                 ->with('student',$student);
+    }
+    public function SearchActiveStudent(Request $request){
+       
+        $query = $request->get('query');
+       if($query != '')
+       {
+        $user = Student::join('Class_model','class_name')
+                             ->where('name','like','%'.$query.'%')
+                             ->orWhere('class_name','like','%'.$query.'%')
+                             ->get();
+        if($user)
+        {
+          return view('Backend.active_student_pagination',compact('user'))->render();
+        }                        
+       }
+       else
+       {
+        $student = Registration::where('type','student')->where('status','active')->get();
+        $session = session::all();
+        $class = Class_model::all();
+        return 0;
+       }
+        
     }
 
 }

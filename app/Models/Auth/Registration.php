@@ -14,6 +14,9 @@ class Registration extends Model
     public function student(){
         return $this->hasOne(Student::class);
     }
+
+   
+
         public function teacher(){
         return $this->hasOne(Teacher::class);
     }
@@ -22,11 +25,12 @@ class Registration extends Model
     }
 
 
-    
-    //  public function session()
-    // {
-    //     return $this->hasOne(session::class);
 
+    
+     public function session()
+    {
+        return $this->hasMany(session::class);
+    }
     // public function teacher(){
     //     return $this->hasMany(Teacher::class);
     // }
