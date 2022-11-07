@@ -21,6 +21,7 @@ return new class extends Migration
            $table->string('qualificattion');
            $table->string('phone');
            $table->string('teach_id');
+           $table->string('picture');
            $table->foreignIdFor(Registration::class);
             });   
 

@@ -142,6 +142,7 @@ class RegisterController extends Controller
                 $user->phone = $request->phone;
                 $user->teach_id = $request->teach_id;
                 $user->registration_id = $reg->id;
+                $user->picture = 'profile.jpg';
                 $user->save();
                 return redirect()->route('user');
                 }
