@@ -198,7 +198,7 @@ Route::get('/profileUpdate',[TeacherController::class,'profileUpdate'])->name('p
 Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted'])->name('profileUpdateSubmitted'); 
 Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
 Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 
-=======
+
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
