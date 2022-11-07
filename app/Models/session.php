@@ -26,7 +26,7 @@ class Session extends Model
     }
     public function sStudent()
     {
-        return $this->hasOne(Student::class);
+        return $this->hasMany(Student::class);
     }
 
 }

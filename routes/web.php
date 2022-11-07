@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\Backend\StoryController;
-
+use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\videoController;
 
 use App\Http\Controllers\Frontend\BookManageController;
@@ -12,7 +12,7 @@ use App\Http\Controllers\Frontend\BookManageController;
 use App\Http\Controllers\Backend\CalenderController;
 
 use App\Http\Controllers\Backend\UploadProgramController;
-
+use App\Http\Controllers\Backend\Teacher\TeacherController;
 use App\Http\Controllers\Frontend\StoryManageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
@@ -33,6 +33,8 @@ Route::get('/user', [RegisterController::class, 'Users'])->name('user');
 Route::get('/get.user', [RegisterController::class, 'GetRegisteredUser'])->name('get_user');
 Route::get('/delete_user/{id}', [RegisterController::class, 'DeleteUser'])->name('delete_user');
 Route::get('/delete_reg/{id}', [RegisterController::class, 'DeleteReg'])->name('delete_reg');
+Route::get('/active_student', [RegisterController::class, 'ActiveStudent'])->name('active_student');
+Route::get('/search_active_student', [RegisterController::class, 'SearchActiveStudent'])->name('search_active_student');
 //Story Controller
 
 Route::get('/upload_story', [StoryController::class, 'Story'])->name('story_upload');
@@ -185,6 +187,18 @@ Route::post('/editteacher',[RegisterController::class, 'editTeacherSubmit'])->na
 Route::post('/editadmin',[RegisterController::class, 'editAdminSubmit'])->name('editadmin');
 
 //Teacher
+
+Route::get('/teacherd',[TeacherController::class,'teacher'])->name('teacher'); 
+
+Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
+Route::get('/filter',[AttendanceController::class,'filter'])->name('filter'); 
+Route::get('/takeatten',[AttendanceController::class,'takeatten'])->name('takeatten'); 
+Route::get('/tprofile',[TeacherController::class,'tprofile'])->name('tprofile');
+Route::get('/profileUpdate',[TeacherController::class,'profileUpdate'])->name('profileUpdate'); 
+Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted'])->name('profileUpdateSubmitted'); 
+Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
+Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 
+=======
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
@@ -192,3 +206,4 @@ Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendan
 Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
 Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
 //
+

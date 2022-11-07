@@ -11,6 +11,7 @@ use App\Models\Active_student;
 use App\Models\Result;
 use App\Models\session;
 use App\Models\Marksheet;
+use App\Models\Attendance;
 
 
 
@@ -23,7 +24,7 @@ class Student extends Model
   
     public function reg()
     {
-        return $this->belongsTo(Registration::class);
+        return $this->hasOne(Registration::class,'registration_id');
     }
     public function sClass()
     {
@@ -32,6 +33,11 @@ class Student extends Model
     public function sSession()
     {
         return $this->belongsTo(session::class,'session_id');
+    }
+
+        public function attendance()
+    {
+        return $this->hasMany(Attendance::class);
     }
 
 

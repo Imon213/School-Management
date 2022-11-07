@@ -48,6 +48,7 @@ class ResultController extends Controller
      
     }
 
+
      
     public function marks()
     {
@@ -67,5 +68,6 @@ class ResultController extends Controller
       
         
     }
+
 
 }
