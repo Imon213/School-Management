@@ -12,7 +12,7 @@ use App\Http\Controllers\Frontend\BookManageController;
 use App\Http\Controllers\Backend\CalenderController;
 
 use App\Http\Controllers\Backend\UploadProgramController;
-
+use App\Http\Controllers\Backend\Teacher\TeacherController;
 use App\Http\Controllers\Frontend\StoryManageController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
@@ -185,9 +185,13 @@ Route::post('/editteacher',[RegisterController::class, 'editTeacherSubmit'])->na
 Route::post('/editadmin',[RegisterController::class, 'editAdminSubmit'])->name('editadmin');
 
 //Teacher
-Route::get('/teacher', function () {
-	return view('Backend/Teacher/teacherDashboard');
-});
+Route::get('/teacherd',[TeacherController::class,'teacher'])->name('teacher'); 
+
 Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
 Route::get('/filter',[AttendanceController::class,'filter'])->name('filter'); 
 Route::get('/takeatten',[AttendanceController::class,'takeatten'])->name('takeatten'); 
+Route::get('/tprofile',[TeacherController::class,'tprofile'])->name('tprofile');
+Route::get('/profileUpdate',[TeacherController::class,'profileUpdate'])->name('profileUpdate'); 
+Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted'])->name('profileUpdateSubmitted'); 
+Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
+Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 

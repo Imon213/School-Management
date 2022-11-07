@@ -24,7 +24,7 @@ class Login extends Controller
             ->first();
         if ($stu) {
             
-            if($stu->type=="admin")
+            if($stu->type=="admin" && $stu->status=="active")
             {
                $request->session()->put('user', $stu->id);
             // return redirect()->route('vendorDashboard');
@@ -32,13 +32,16 @@ class Login extends Controller
             //$request->session()->put('name', $stu->name);
                 return redirect()->route('admin');
             }
-            elseif ($stu->status==1) {
-                $request->session()->put('email', $stu->email);
-                 return redirect()->route('dashboard');
+
+            elseif($stu->type=="teacher" && $stu->status=="active"){
+           $request->session()->put('name', $stu->teacher->name);
+           $request->session()->put('email', $stu->email);
+           $request->session()->put('gender', $stu->teacher->gender);
+           $request->session()->put('phone', $stu->teacher->phone);
+           $request->session()->put('picture', $stu->teacher->picture);
+           $request->session()->put('registration_id', $stu->teacher->registration_id);
+                return redirect()->route('teacher');
             }
-
-
-          
            
         } else {
             return redirect()->route('login');
