@@ -9,8 +9,12 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
    </head>
    <style type="text/css">
      /* Googlefont Poppins CDN Link */
@@ -20,6 +24,9 @@ integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLAS
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+}
+a{
+  text-decoration: none;
 }
 .sidebar{
   position: fixed;
@@ -453,12 +460,13 @@ nav .profile-details i{
   }
 }
 
+
    </style>
 <body>
   <div class="sidebar">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">CodingLab</span>
+      <span class="logo_name">{{Session('name')}}</span>
     </div>
       <ul class="nav-links">
         <li>
@@ -539,10 +547,21 @@ nav .profile-details i{
         <input type="text" placeholder="Search...">
         <i class='bx bx-search' ></i>
       </div>
-      <div class="profile-details">
-        <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name">Prem Shahi</span>
-      </div>
+
+ 
+<div class="dropdown">
+   <img src="timage/{{Session::get('picture')}}" style="height: 30px; border-radius: 40%; width: 30px;" >
+  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a  href="{{route('tprofile')}}" class="dropdown-item" href="">Your Profile</a></li>
+    <li><a class="dropdown-item" href="{{route('changePicture')}}">Upload Picture</a></li>
+    <li><a class="dropdown-item" href="#">Change Password</a></li>
+  </ul>
+</div>
+
     </nav>
     <div class="container"  style="height: 100vh;margin-left: 30px;">
     <div class="home-content" style="margin-right: 30px;height: 20%;">
@@ -562,6 +581,17 @@ sidebarBtn.onclick = function() {
 }else
   sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
 }
+             $(document).ready(function() {
+
+            $(document).on('click', '#dp', function(e) {
+
+                $.ajax({
+                    url: "{{route('tprofile')}}",
+                    method: 'GET',
+                  })
+              })
+          });
+
  </script>
 
 </body>
