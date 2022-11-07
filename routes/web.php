@@ -117,7 +117,7 @@ Route::get('calendar-event', [CalenderController::class, 'index']);
 Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 ////////////profile///////////////////////
 Route::get('/profile', [ProfileController::class, 'profile'])->name('pro')->middleware('page');
-Route::post('/profile', [ProfileController::class, 'imageup'])->name('imgup');
+Route::get('/profileget', [ProfileController::class, 'imageup'])->name('imgup');
 Route::get('/profileup', [ProfileController::class, 'profileup'])->name('proup')->middleware('page');
 Route::post('/profileup', [ProfileController::class, 'editdone'])->name('add');
 Route::get('/change', [ProfileController::class, 'change'])->name('changepass')->middleware('page');
@@ -189,3 +189,6 @@ Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
 Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
+Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
+//

@@ -10,6 +10,7 @@ use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
 use App\Models\Section;
+use App\Models\Attendance;
 class ResultController extends Controller
 {
     public function GetResult(){
@@ -47,12 +48,24 @@ class ResultController extends Controller
      
     }
 
-      public function Attendance(){
+     
+    public function marks()
+    {
        $var = Session::all();
        $v = Subject::all();
        $f=Class_model::all();
-       $r=Section::all();
-      return view('Backend.Teacher.attendance')->with('ss', $var)->with('v', $v)->with('d',$f)->with('r',$r);
+      return view('Backend.marks')->with('ss', $var)->with('v', $v)->with('d',$f);
+      
+    }
+    public function marksSubmitted(Request $req)
+    {
+       
+         $v=Mark::where('session',$req->s)->where('class',$req->q)->where('subject',$req->r)->get();
+      
+         
+     return view('Backend.marktable',compact('v'));
+      
+        
     }
 
 }
