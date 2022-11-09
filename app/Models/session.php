@@ -20,9 +20,9 @@ class Session extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    public function Active_student()
+    public function actStudent()
     {
-        return $this->belongsTo(Active_student::class);
+        return $this->hasMany(Active_student::class);
     }
     public function sStudent()
     {

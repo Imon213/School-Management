@@ -1,176 +1,160 @@
-@extends('Backend.admin')
-@section('content')
+@extends('Backend.Teacher.teacherDashboard')
+@section('content1')
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 	       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title></title>
+
     <style>
-    .container {
-        position: relative;
-    }
 
-  
-
-    td i {
-        font-size: 29px;
-    }
-
-    .form-input input {
-        padding-left: 40px;
-    }
-
-    .user-table {
-        margin-top: 50px;
-    }
-
-    .container {
-        position: relative;
-    }
-
-   
-
-    .user-table {
-        margin-top: 50px;
-    }
-
-    @media only screen and (max-width: 768px) {
-        .container {
-            margin: 0;
-            padding: 0 !important;
-        }
-
-        #exampleModal {
-            width: 100%;
-            margin: 0;
-
-        }
-
-        .table-data {
-
-            font-size: 10px;
-        }
-
-        .table tr td {
-            padding: 5px 0;
-            width: 2rem !important;
-        }
-
-        .table td a {
-            display: flex;
-            width: 12px;
-            height: 12px;
-            font-size: 8px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .class {
-            border: none !important;
-        }
     </style>
 </head>
 
 <body>
-    <div class="container">
 
-        <div class="form-input">
-            <div class="row">
-                <div class="col-lg-4"> <select name="session" id="session" class="form-select"
-                        aria-label="Default select example">
-                        <option>Select Session</option>
-                        @foreach($session as $c)
-
-                        <option value="{{$c->id}}">{{$c->session_name}}</option>
-
-                        @endforeach
-                    </select></div>
-                <div class="col-lg-4">
-                <select name="class" id="class" class="form-select" aria-label="Default select example">
-                <option value="">Select Class</option>
-                                    @foreach($class as $c)
-
-                                    <option value="{{$c->id}}>{{$c->class_name}}</option>
-
-
-                                    @endforeach
-                                </select></div>
-                <div class="col-lg-4">
-                <button id="search_active" style="width:300px;" class="btn btn-success"> Filter Student</button>
-                </div>
-                
-            </div>
+    <!-- Cross Site Request Forgery-->
+    {{csrf_field()}}
+    <div class="row text-center">
+        <div class="col-md-4">
+            <select name="class_name" id="class" class="form-select" aria-label="Default select example">
+                <option selected>Open this for select class</option>
+                @foreach ($class as $ds)
+                <option value={{$ds->id}}>{{$ds->class_name}}</option>
+                @endforeach
+            </select>
         </div>
 
-        <div class="row user-table">
-
-            <div class="col-md-12 col-sm-6 table-data">
-
-                <table class="table table-striped text-center">
-                    <thead>
-                        <tr>
-                            <th>Roll</th>
-                            <th>Name</th>
-                            <th>BCN</th>
-                            <th>Status</th>
-                            <th>Session</th>
-                            <th>Class</th>
-                            <th colspan="2">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($student as $s)
-                        <tr>
-                            <td>{{$s->student->roll}}</td>
-                            <td>{{$s->student->name}}</td>
-                            <td>{{$s->bcn}}</td>
-                            <td><span class="bg-primary"
-                                    style="color:white; border-radius:5px; padding: 5px 10px">{{$s->status}}</span></td>
-                            <td>
-                            {{$s->student->ssession->session_name}}
-
-                            </td>
-                            <td>
-                            {{$s->student->sclass->class_name}}
-                            </td>
-                            <td class="text-center"><a href=""><i class="fa-solid fa-circle-check"></i></a></td>
-                            <td class="text-danger"><a href=""><i class="fa-solid fa-xmark"></i></a></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-            </div>
+        <div class="col-md-4">
+            <select name="Session" id="session" class="form-select" aria-label="Default select example">
+                <option selected>Open this for select Session</option>
+                @foreach ($session as $rs)
+                <option value={{$rs->id}}>{{$rs->session_name}}</option>
+                @endforeach
+            </select>
 
         </div>
 
+        <div class="col-md-2">
+            <button id="filter-student" name="" class="btn btn-primary ">Filter
+                Student</button>
+        </div>
+
+        <div class="col-md-2">
+            <button id="valid-student" name="" class="btn btn-primary ">Valid
+                Student</button>
+        </div>
 
 
-        <script>
-        $(document).ready(function() {
-            $(document).on('click', '#search_active', function() {
-                var session = $('#session');
-                var class = $('#class');
-               alert('ok');
-            });
-
-           
+    </div>
 
 
-        })
-        </script>
+    <div class="row user-table" style="margin-top:60px">
+
+        <div class="col-md-12 col-sm-6 table-data">
+            <div style="height:200px; display:grid; place-items:center;">
+                <h3 style="font-size:30px; color:#183153;font-weight:500;" class="text-center"> No Student Found. Try To
+                    Filter..........<i class="fa-solid fa-feather"></i></h3>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+    $(document).on('click', '#filter-student', function(e) {
+        e.preventDefault();
+        var s_id = $('#session').val();
+        var c_id = $('#class').val();
+
+
+        $.ajax({
+            url: "{{ route('search_active_student') }}",
+            method: 'GET',
+            data: {
+                s_id: s_id,
+                c_id: c_id,
+
+            },
+            success: function(res) {
+                $('.table-data').html(res);
+            }
+        });
+
+    });
+
+    $(document).on('click', '#add', function(e) {
+        e.preventDefault();
+        var s_id = $('#session').val();
+        var c_id = $('#class').val();
+        var current_row = $(this).closest('tr');
+        var st_id = current_row.find('#s_id').val();;
+        $.ajax({
+            url: "{{ route('add_active_student') }}",
+            method: 'GET',
+            data: {
+                s_id: s_id,
+                c_id: c_id,
+                st_id: st_id
+
+
+            },
+            success: function(res) {
+                alert(res);
+            }
+        });
+
+    });
+    $(document).on('click', '#valid-student', function(e) {
+        e.preventDefault();
+        var s_id = $('#session').val();
+        var c_id = $('#class').val();
+
+
+        $.ajax({
+            url: "{{ route('valid_student') }}",
+            method: 'GET',
+            data: {
+                s_id: s_id,
+                c_id: c_id,
+
+            },
+            success: function(res) {
+                $('.table-data').html(res);
+            }
+        });
+
+    });
+    $(document).on('click', '#cancel', function(e) {
+        e.preventDefault();
+
+        var current_row = $(this).closest('tr');
+        var id = current_row.find('#id').val();
+
+        $.ajax({
+            url: "{{ route('invalid') }}",
+            method: 'GET',
+            data: {
+                id: id,
+            },
+            success: function(res) {
+                alert(res);
+            }
+        });
+
+    });
+    </script>
 
 </body>
 
