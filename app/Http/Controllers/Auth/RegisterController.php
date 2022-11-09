@@ -249,26 +249,97 @@ class RegisterController extends Controller
     }
     public function SearchActiveStudent(Request $request){
        
-        $query = $request->get('query');
-       if($query != '')
-       {
-        $user = Student::join('Class_model','class_name')
-                             ->where('name','like','%'.$query.'%')
-                             ->orWhere('class_name','like','%'.$query.'%')
-                             ->get();
+      
+      
+        $user = Student::where('class_model_id',$request->c_id)
+                        ->where('session_id',$request->s_id)
+                        ->get();
+        if($user->count() > 0)
+        {
+          return view('Backend.active_student_pagination',compact('user'));
+        }  
+        else{
+            return'
+            <div class="text-center" style="height:200px; display:grid; place-items:center;">
+            <i class="fa-thin fa-face-monocle"></i>
+            <h3 style="font-size:30px; color:#183153;font-weight:500;" > Wrong Information Found. Try To Filter Again..........<i class="fa-solid fa-feather"></i></h3>
+            </div>
+            ';
+        }                      
+      
+       
+        
+    }
+    public function AddActiveStudent(Request $request)
+    {
+        $exist = Active_student::where('student_id',$request->st_id)
+                                   ->where('session_id',$request->s_id)
+                                   ->where('class_model_id',$request->c_id)
+                                   ->first();
+        if($exist)
+        {
+           
+            if($exist->status=='invalid')
+            {
+             $exist->status = 'valid';
+             $exist->save();
+             return "updated";
+            }
+            else
+            {
+             return 'Already valid';
+            }
+        }
+        else
+        {
+            $user = new Active_student();
+        $user->student_id=$request->st_id;
+        $user->class_model_id=$request->c_id;
+        $user->session_id=$request->s_id;
+        $user->status = "valid";
         if($user)
         {
-          return view('Backend.active_student_pagination',compact('user'))->render();
-        }                        
-       }
-       else
-       {
-        $student = Registration::where('type','student')->where('status','active')->get();
-        $session = session::all();
-        $class = Class_model::all();
-        return 0;
-       }
+            $stu = Student::where('id',$request->st_id)->first();
+            $stu->class_model_id = $request->c_id;
+            $stu->session_id = $request->s_id;
+            $stu->save();
+            $user->save();
+            return "success";
+        }
+        }
+    }
+    public function FilterValidStudent(Request $request){
+       
+      
+      
+        $user = Active_student::where('class_model_id',$request->c_id)
+                        ->where('session_id',$request->s_id)
+                        ->get();
+        if($user->count() > 0)
+        {
+          return view('Backend.valid_student_list',compact('user'));
+        }  
+        else{
+            return'
+            <div class="text-center" style="height:200px; display:grid; place-items:center;">
+            <i class="fa-thin fa-face-monocle"></i>
+            <h3 style="font-size:30px; color:#183153;font-weight:500;" > Wrong Information Found. Try To Filter Again..........<i class="fa-solid fa-feather"></i></h3>
+            </div>
+            ';
+        }                      
+      
+       
         
+    }
+    public function Invalid(Request $request)
+    {
+        $valid = Active_student::where('id',$request->id)->first();
+      if($valid->count()>0)
+      {
+        $valid->status = 'invalid';
+        $valid->save();
+        return "success";
+      }
     }
 
 }

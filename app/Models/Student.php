@@ -24,7 +24,7 @@ class Student extends Model
   
     public function reg()
     {
-        return $this->hasOne(Registration::class,'registration_id');
+        return $this->belongsTo(Registration::class,'registration_id');
     }
     public function sClass()
     {
@@ -38,6 +38,10 @@ class Student extends Model
         public function attendance()
     {
         return $this->hasMany(Attendance::class);
+    }
+    public function ActiveStudent()
+    {
+        return $this->hasMany(Active_student::class);
     }
 
 

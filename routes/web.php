@@ -35,6 +35,9 @@ Route::get('/delete_user/{id}', [RegisterController::class, 'DeleteUser'])->name
 Route::get('/delete_reg/{id}', [RegisterController::class, 'DeleteReg'])->name('delete_reg');
 Route::get('/active_student', [RegisterController::class, 'ActiveStudent'])->name('active_student');
 Route::get('/search_active_student', [RegisterController::class, 'SearchActiveStudent'])->name('search_active_student');
+Route::get('/add_active_student', [RegisterController::class, 'AddActiveStudent'])->name('add_active_student');
+Route::get('/valid_student', [RegisterController::class, 'FilterValidStudent'])->name('valid_student');
+Route::get('/invalid', [RegisterController::class, 'Invalid'])->name('invalid');
 //Story Controller
 
 Route::get('/upload_story', [StoryController::class, 'Story'])->name('story_upload');
@@ -119,7 +122,7 @@ Route::get('calendar-event', [CalenderController::class, 'index']);
 Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 ////////////profile///////////////////////
 Route::get('/profile', [ProfileController::class, 'profile'])->name('pro')->middleware('page');
-Route::post('/profile', [ProfileController::class, 'imageup'])->name('imgup');
+Route::get('/profileget', [ProfileController::class, 'imageup'])->name('imgup');
 Route::get('/profileup', [ProfileController::class, 'profileup'])->name('proup')->middleware('page');
 Route::post('/profileup', [ProfileController::class, 'editdone'])->name('add');
 Route::get('/change', [ProfileController::class, 'change'])->name('changepass')->middleware('page');
@@ -142,7 +145,7 @@ Route::get('/notice_details/{id}', [NoticeManageController::class, 'NoticeDetail
 //Student Dashboard Controller
 Route::get('/upload_class_routine',[ClassRoutineController::class,'GetSubject'])->name('getsubject');
 Route::post('/upload_class_routine',[ClassRoutineController::class,'AddRoutine'])->name('getsubject');
-Route::get('/dashboard',[StudentDashboardController::class,'Dashboard'])->name('dashboard')->middleware('page');
+Route::get('/dashboard',[StudentDashboardController::class,'Dashboard'])->name('dashboard');
 Route::get('/upload_program',[UploadProgramController::class,'GetSubject'])->name('subject');
 Route::post('/upload_program',[UploadProgramController::class,'AddProgram'])->name('subject');
 //StudentResult controller
@@ -187,15 +190,33 @@ Route::post('/editteacher',[RegisterController::class, 'editTeacherSubmit'])->na
 Route::post('/editadmin',[RegisterController::class, 'editAdminSubmit'])->name('editadmin');
 
 //Teacher
+
 Route::get('/teacherd',[TeacherController::class,'teacher'])->name('teacher'); 
 
 Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
 Route::get('/filter',[AttendanceController::class,'filter'])->name('filter'); 
 Route::get('/takeatten',[AttendanceController::class,'takeatten'])->name('takeatten'); 
+
+Route::get('/atten_submit',[AttendanceController::class,'AttenSubmit'])->name('atten_submit'); 
+Route::get('/atten_record',[AttendanceController::class,'AttenRecord'])->name('atten_record'); 
+
 Route::get('/tprofile',[TeacherController::class,'tprofile'])->name('tprofile');
 Route::get('/profileUpdate',[TeacherController::class,'profileUpdate'])->name('profileUpdate'); 
 Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted'])->name('profileUpdateSubmitted'); 
 Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
 Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 
+
 Route::get('/uploadmarks',[TeacherController::class,'uploadmarks'])->name('uploadmarks'); 
 Route::get('/filterStudent',[TeacherController::class,'filterStudent'])->name('filterStudent'); 
+
+
+
+Route::get('/teacher', function () {
+	return view('Backend/Teacher/teacherDashboard');
+});
+Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
+Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
+//
+
+

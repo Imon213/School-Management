@@ -9,6 +9,7 @@ use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
 use App\Models\Section;
+use App\Models\Student;
 use App\Models\Attendance;
 
 class AttendanceController extends Controller
@@ -47,6 +48,47 @@ class AttendanceController extends Controller
             return view('Backend.Teacher.take_attendance',compact('takeatten'));
                 
         
+    }
+    public function AttenSubmit(Request $request)
+    { 
+      $exist = Attendance::where('date',$request->date)
+      ->where('student_id',$request->stu_id)->first();
+      if($exist)
+      {
+        $exist->attendance = $request->atten;
+        $exist->save();
+        return 'success';
+      }
+      else
+      {
+        $atten = new Attendance();
+      $stu = Student::where('id',$request->stu_id)->first();
+      $atten->student_id = $stu->id;
+      $atten->class_model_id = $stu->class_model_id;
+      $atten->session_id = $stu->session_id;
+      $atten->subject_id = $request->sub_id;
+      $atten->date = $request->date;
+      $atten->attendance = $request->atten;
+      if($atten)
+      {
+        $atten->save();
+        return 'success';
+      }
+      return 'failed';
+      }
+
+    }
+    public function AttenRecord(Request $request)
+    {
+      $record = Attendance::where('student_id',$request->stu_id)->where('subject_id',$request->sub_id)->get();
+      if($record)
+      {
+        return view('Backend.Teacher.atten_record',compact('record'));
+      }
+      else
+      {
+        return 'failed';
+      }
     }
 
         
