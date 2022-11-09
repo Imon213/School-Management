@@ -5,7 +5,13 @@ namespace App\Http\Controllers\Backend\Teacher;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use App\Models\Subject;
+use App\Models\Mark;
+use App\Models\Session;
+use App\Models\Class_model;
+use App\Models\Section;
 use App\Models\Auth\Registration;
+use App\Models\Active_student;
 
 class teacherController extends Controller
 {
@@ -57,4 +63,26 @@ class teacherController extends Controller
         return redirect()->route('profileUpdate');
 
     }
+
+        public function uploadmarks(){
+        $var = Session::all();
+       $v = Subject::all();
+       $f=Class_model::all();
+       $r=Subject::all();
+        return view('Backend.Teacher.upload_marks')->with('ss', $var)->with('v', $v)->with('d',$f)->with('r',$r)->with('data','empty');
+    }
+
+          public function filterStudent(Request $request){
+         $admins = Active_student::where('class_model_id',$request->class)->where('subject_id',$request->subject)->get();
+        if($admins->count()>0)
+        {
+            return view('Backend.Teacher.atten_table')->with('atten',$admins);
+        }
+        else
+        {
+           return'<h3 class="text-center">Wrong Information Found...</h3>';
+        }
+      
+       
+  } 
 }

@@ -197,3 +197,5 @@ Route::get('/profileUpdate',[TeacherController::class,'profileUpdate'])->name('p
 Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted'])->name('profileUpdateSubmitted'); 
 Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
 Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 
+Route::get('/uploadmarks',[TeacherController::class,'uploadmarks'])->name('uploadmarks'); 
+Route::get('/filterStudent',[TeacherController::class,'filterStudent'])->name('filterStudent'); 
