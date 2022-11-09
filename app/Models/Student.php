@@ -39,6 +39,10 @@ class Student extends Model
     {
         return $this->hasMany(Attendance::class);
     }
+    public function ActiveStudent()
+    {
+        return $this->hasMany(Active_student::class);
+    }
 
 
 }

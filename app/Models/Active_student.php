@@ -5,19 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
-use App\Models\Session;
+use App\Models\session;
 use App\Models\Class_model;
 class Active_student extends Model
 {
     use HasFactory;
     
-    public function Astudent(){
-        return $this->hasMany(Student::class);
+    public function actStudent()
+    {
+        return $this->belongsTo(Student::class,'student_id');
     }
-    public function session(){
-        return $this->hasMany(Session::class);
+    public function actSession()
+    {
+        return $this->belongsTo(session::class,'session_id');
     }
-    public function class(){
-        return $this->hasMany(Class_model::class);
+    public function actClass()
+    {
+        return $this->belongsTo(Class_model::class,'class_model_id');
     }
+   
+    
 }

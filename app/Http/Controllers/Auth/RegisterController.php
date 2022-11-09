@@ -142,6 +142,7 @@ class RegisterController extends Controller
                 $user->phone = $request->phone;
                 $user->teach_id = $request->teach_id;
                 $user->registration_id = $reg->id;
+                $user->picture = 'profile.jpg';
                 $user->save();
                 return redirect()->route('user');
                 }
@@ -251,7 +252,7 @@ class RegisterController extends Controller
       
       
         $user = Student::where('class_model_id',$request->c_id)
-                        ->orwhere('session_id',$request->s_id)
+                        ->where('session_id',$request->s_id)
                         ->get();
         if($user->count() > 0)
         {
@@ -273,30 +274,72 @@ class RegisterController extends Controller
     {
         $exist = Active_student::where('student_id',$request->st_id)
                                    ->where('session_id',$request->s_id)
-                                   ->where('class_id',$request->c_id)
+                                   ->where('class_model_id',$request->c_id)
                                    ->first();
-        if($exist->count()>0)
+        if($exist)
         {
-           $exist->session_id=$request->s_id;
-           $exist->class_id=$request->c_id;
-           if($exist)
-           {
-            $exist->save();
-            return "updated";
-           }
+           
+            if($exist->status=='invalid')
+            {
+             $exist->status = 'valid';
+             $exist->save();
+             return "updated";
+            }
+            else
+            {
+             return 'Already valid';
+            }
         }
         else
         {
             $user = new Active_student();
-        $user->student_id=$request->s_id;
+        $user->student_id=$request->st_id;
         $user->class_model_id=$request->c_id;
         $user->session_id=$request->s_id;
+        $user->status = "valid";
         if($user)
         {
+            $stu = Student::where('id',$request->st_id)->first();
+            $stu->class_model_id = $request->c_id;
+            $stu->session_id = $request->s_id;
+            $stu->save();
             $user->save();
             return "success";
         }
         }
+    }
+    public function FilterValidStudent(Request $request){
+       
+      
+      
+        $user = Active_student::where('class_model_id',$request->c_id)
+                        ->where('session_id',$request->s_id)
+                        ->get();
+        if($user->count() > 0)
+        {
+          return view('Backend.valid_student_list',compact('user'));
+        }  
+        else{
+            return'
+            <div class="text-center" style="height:200px; display:grid; place-items:center;">
+            <i class="fa-thin fa-face-monocle"></i>
+            <h3 style="font-size:30px; color:#183153;font-weight:500;" > Wrong Information Found. Try To Filter Again..........<i class="fa-solid fa-feather"></i></h3>
+            </div>
+            ';
+        }                      
+      
+       
+        
+    }
+    public function Invalid(Request $request)
+    {
+        $valid = Active_student::where('id',$request->id)->first();
+      if($valid->count()>0)
+      {
+        $valid->status = 'invalid';
+        $valid->save();
+        return "success";
+      }
     }
 
 }

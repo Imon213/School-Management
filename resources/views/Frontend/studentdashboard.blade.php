@@ -14,7 +14,7 @@
     <style>
     .container-fluid {
         display: flex;
-        flex-direction:column;
+       
         border: 1px solid lightgray;
     }
 

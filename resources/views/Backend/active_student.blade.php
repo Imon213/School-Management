@@ -46,10 +46,16 @@
 
         </div>
 
-        <div class="col-md-4">
-            <button id="filter-student" style="height:38px; font-size:14px;" name="" class="btn btn-primary ">Filter
+        <div class="col-md-2">
+            <button id="filter-student" name="" class="btn btn-primary ">Filter
                 Student</button>
         </div>
+
+        <div class="col-md-2">
+            <button id="valid-student" name="" class="btn btn-primary ">Valid
+                Student</button>
+        </div>
+
 
     </div>
 
@@ -57,9 +63,10 @@
     <div class="row user-table" style="margin-top:60px">
 
         <div class="col-md-12 col-sm-6 table-data">
-        <div style="height:200px; display:grid; place-items:center;">
-        <h3 style="font-size:30px; color:#183153;font-weight:500;" class="text-center"> No Student Found. Try To Filter..........<i class="fa-solid fa-feather"></i></h3>
-        </div>
+            <div style="height:200px; display:grid; place-items:center;">
+                <h3 style="font-size:30px; color:#183153;font-weight:500;" class="text-center"> No Student Found. Try To
+                    Filter..........<i class="fa-solid fa-feather"></i></h3>
+            </div>
 
         </div>
     </div>
@@ -67,18 +74,18 @@
 
     <script type="text/javascript">
     $(document).on('click', '#filter-student', function(e) {
-       e.preventDefault();
+        e.preventDefault();
         var s_id = $('#session').val();
         var c_id = $('#class').val();
 
-        
+
         $.ajax({
             url: "{{ route('search_active_student') }}",
             method: 'GET',
             data: {
                 s_id: s_id,
                 c_id: c_id,
-                
+
             },
             success: function(res) {
                 $('.table-data').html(res);
@@ -88,12 +95,11 @@
     });
 
     $(document).on('click', '#add', function(e) {
-       e.preventDefault();
+        e.preventDefault();
         var s_id = $('#session').val();
         var c_id = $('#class').val();
         var current_row = $(this).closest('tr');
-        var st_id = current_row.find('#s_id').val();
-       
+        var st_id = current_row.find('#s_id').val();;
         $.ajax({
             url: "{{ route('add_active_student') }}",
             method: 'GET',
@@ -101,15 +107,55 @@
                 s_id: s_id,
                 c_id: c_id,
                 st_id: st_id
-                
+
+
             },
             success: function(res) {
-               alert(res);
+                alert(res);
+            }
+        });
+
+    });
+    $(document).on('click', '#valid-student', function(e) {
+        e.preventDefault();
+        var s_id = $('#session').val();
+        var c_id = $('#class').val();
+
+
+        $.ajax({
+            url: "{{ route('valid_student') }}",
+            method: 'GET',
+            data: {
+                s_id: s_id,
+                c_id: c_id,
+
+            },
+            success: function(res) {
+                $('.table-data').html(res);
+            }
+        });
+
+    });
+    $(document).on('click', '#cancel', function(e) {
+        e.preventDefault();
+
+        var current_row = $(this).closest('tr');
+        var id = current_row.find('#id').val();
+
+        $.ajax({
+            url: "{{ route('invalid') }}",
+            method: 'GET',
+            data: {
+                id: id,
+            },
+            success: function(res) {
+                alert(res);
             }
         });
 
     });
     </script>
+
 </body>
 
 </html>
