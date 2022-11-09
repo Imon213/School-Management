@@ -5,6 +5,7 @@
 <head>
     <title>User profile</title>
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
         body {
             background-color: transparent;
@@ -70,24 +71,21 @@
     
     <div class="container rounded bg-white mt-5 mb-5">
         <div>
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                @if($v->image)
-                <img  width="150px" src="storage/images/{{$v->image}}">
-                @else
-                <img  width="150px" src="image/blank_dp.jpg">
-                @endif
+             <div class="table-data"></div>
 
-
-
-                <span class="font-weight-bold">{{$ss->name}}</span>
-                <span class="text-black-50">{{$ss->email}}</span>
-            </div>
-            <form class="text-center" method="POST" action="{{route('imgup')}}" enctype="multipart/form-data">
-                {{@csrf_field()}}
+           
+           <div class="text-center">
+           
+                <form method="post" id="image-upload" enctype="multipart/form-data">
+                    
                 <label for="img">Select image:</label>
-                <input type="file" id="img" name="img" accept="image/*">
-                <input type="submit">
-            </form>
+                <input type="file" id="img" accept="image/*">
+                <input id="sub" type="submit">
+                </form>
+               <img id="ap" src="">
+            
+                </div>
+           
             <div class="col-md-5 border-right m-auto text-center">
                 <div class="p-3 py-5">
                     <h4 class="text-center"><i>User view</i></h4>
@@ -135,7 +133,27 @@
 </div>
 </div>
 
+ <script>
+        $(document).ready(function() {
+            
+            $(document).on('submit', '#image-upload', function(e) {
+                e.preventDefault();
+                let img = new FormData(this);
+                let reg = sessionStorage.getItem("user");
+                $('#ap').append(img);
+                
+                alert(img);
 
+
+            });
+            
+
+         
+
+
+
+        });
+        </script>
    
 </body>
 

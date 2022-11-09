@@ -122,7 +122,7 @@ Route::get('calendar-event', [CalenderController::class, 'index']);
 Route::post('calendar-crud-ajax', [CalenderController::class, 'calendarEvents']);
 ////////////profile///////////////////////
 Route::get('/profile', [ProfileController::class, 'profile'])->name('pro')->middleware('page');
-Route::post('/profile', [ProfileController::class, 'imageup'])->name('imgup');
+Route::get('/profileget', [ProfileController::class, 'imageup'])->name('imgup');
 Route::get('/profileup', [ProfileController::class, 'profileup'])->name('proup')->middleware('page');
 Route::post('/profileup', [ProfileController::class, 'editdone'])->name('add');
 Route::get('/change', [ProfileController::class, 'change'])->name('changepass')->middleware('page');
@@ -190,6 +190,7 @@ Route::post('/editteacher',[RegisterController::class, 'editTeacherSubmit'])->na
 Route::post('/editadmin',[RegisterController::class, 'editAdminSubmit'])->name('editadmin');
 
 //Teacher
+
 Route::get('/teacherd',[TeacherController::class,'teacher'])->name('teacher'); 
 
 Route::get('/attendance',[AttendanceController::class,'attendance'])->name('attendance');
@@ -204,4 +205,13 @@ Route::get('/profileUpdate',[TeacherController::class,'profileUpdate'])->name('p
 Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted'])->name('profileUpdateSubmitted'); 
 Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
 Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 
+
+
+Route::get('/teacher', function () {
+	return view('Backend/Teacher/teacherDashboard');
+});
+Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
+Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
+//
 
