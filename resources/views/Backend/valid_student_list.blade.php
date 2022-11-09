@@ -15,18 +15,20 @@
         @foreach($user as $key=>$item)
 
 
+        @if($item->status=='valid')
         <tr>
             <td>{{$key + 1}}
-                <input id="s_id" type="hidden" value="{{$item->id}}">
+                <input id="id" type="hidden" value="{{$item->id}}">
             </td>
-            <td class="roll">{{$item->roll}}</td>
-            <td>{{$item->name}}</td>
-            <td>{{$item->sSession->session_name}}</td>
-            <td>{{$item->sClass->class_name}}</td>
-            <td>{{$item->reg->status}}</td>
-            <td><button id="add" class="btn btn-primary"><i class="fa-solid fa-check"></i></button></td>
+            <td class="roll">{{$item->actStudent->roll}}</td>
+            <td>{{$item->actStudent->name}}</td>
+            <td>{{$item->actSession->session_name}}</td>
+            <td>{{$item->actClass->class_name}}</td>
+            <td>{{$item->status}}</td>
+            <td><button id="cancel" class="btn btn-danger"><i class="fa-solid fa-remove"></i></button></td>
 
         </tr>
+        @endif
 
         @endforeach
 
