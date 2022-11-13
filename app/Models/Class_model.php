@@ -20,9 +20,9 @@ class Class_model extends Model
         return $this->hasMany(Student::class,);
     }
 
-     public function active_student()
+     public function actstudent()
     {
-        return $this->belongsTo(Active_student::class);
+        return $this->hasMany(Active_student::class);
     }
     public function routine()
     {

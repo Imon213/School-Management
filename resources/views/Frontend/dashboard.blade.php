@@ -304,11 +304,11 @@
 
                 <li><a href="#"><i class="fa-solid fa-book"></i> Books</a></li>
                 <li><a href="/viewstory"><i class="fa-solid fa-hippo"></i> Story </a></li>
-                <li><a href="#"> <i class="fa-solid fa-square-poll-vertical"></i> Result</a></li>
+                <li><a href="/getmarks"> <i class="fa-solid fa-square-poll-vertical"></i> Result</a></li>
                 <li> <a href="/notice"><i class="fa-solid fa-bell"></i> Notice</a></li>
             </ul>
             <div class="profile">
-                <a href="#"><i class="fa-solid fa-user"></i> Imon Faysal</a>
+                <a href="#"><i class="fa-solid fa-user"></i> {{$student->name}}</a>
                 <a href="{{route('lout')}}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             </div>
         </div>

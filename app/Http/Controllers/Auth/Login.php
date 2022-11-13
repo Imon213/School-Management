@@ -42,8 +42,15 @@ class Login extends Controller
            $request->session()->put('registration_id', $stu->teacher->registration_id);
                 return redirect()->route('teacher');
             }
+           elseif($stu->type=="student" && $stu->status == 'active')
+           {
+            $request->session()->put('user', $stu->student->id);
+            return redirect()->route('dashboard');
+           }
            
-        } else {
+          
+        } 
+        else {
             return redirect()->route('login');
         }
     }

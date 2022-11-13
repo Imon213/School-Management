@@ -17,10 +17,12 @@ return new class extends Migration
     {
         Schema::create('active_students', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+           
             $table->foreignIdFor(Student::class);
              $table->foreignIdFor(Class_model::class);
               $table->foreignIdFor(Session::class);
+              $table->string('status');
+              $table->timestamps();
         });
     }
 
