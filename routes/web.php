@@ -154,6 +154,8 @@ Route::get('/getresult', [ResultController::class, 'GetResult'])->name('getresul
 Route::get('/marksdisttibution', [ResultController::class, 'MarksDistribution'])->name('marksdisttibution');
 Route::post('/marksdisttibution', [ResultController::class, 'MarksDistributionSubmitted'])->name('marksdisttibution');
 Route::get('/getmarks', [StudentResultManagementController::class, 'GetMarks'])->name('getmarks');
+Route::get('/sub_marks', [StudentResultManagementController::class, 'SubjectMarks'])->name('sub_marks');
+Route::get('/marks_distribution', [StudentResultManagementController::class, 'SubjectMarksDistribution'])->name('marks_distribution');
 
 //Courses Controller
 
