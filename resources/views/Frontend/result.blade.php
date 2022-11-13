@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <title>Document</title>
     <style>
     .container {
@@ -135,25 +136,34 @@
         <div class="top-section">
             <div class="row">
                 <div class="col-md-7">
-                    <select name="class_name" id="class_name" class="form-select" aria-label="Default select example">
-                        <option class="bg-primary" selected>Select Course</option>
-                        <option value="one">One</option>
-                        <option value="two">Two</option>
+                    <select name="class_name"  class="form-select" aria-label="Default select example">
+                        <option class="bg-primary">Select Session</option>
+                        @foreach($active as $item)
+
+                        <option value="{{$item->actclass->id}}" id="class" @if($item->status=="valid") selected @endif >{{$item->actclass->class_name}}
+                        </option>
+
+                        @endforeach
                     </select>
                     <br>
                 </div>
-                <div class="col-md-4">
-                    <select name="class_name" id="class_name" class="form-select" aria-label="Default select example">
-                        <option class="bg-primary" selected>Select Session</option>
-                        <option value="one">One</option>
-                        <option value="two">Two</option>
+                <div class="col-md-4 add_subject">
+                    <select name="class_name" id="sub" class="form-select" aria-label="Default select example">
+                        <option class="bg-primary">Select Subject</option>
+                        @foreach($active as $item)
+                        @if($item->status=='valid')
+                        @foreach($item->actclass->sSubject as $subject)
+                        <option id="add_sub" value="{{$subject->id}}" selected>{{$subject->sub_name}}</option>
+                        @endforeach
+                        @endif
+                        @endforeach
                     </select>
                 </div>
             </div>
         </div>
         <div class="end-section">
             <div class="middle-title bg-primary">
-                <h3 class="title">Bangla</h3>
+                <h3 class="title">{{$sub->sub_name}}</h3>
                 <i>Total marks: 100 </i>
                 <i> Passing Marks: 33</i><br>
                 <i>Contribution: 100%</i>
@@ -170,11 +180,12 @@
                         </div>
                     </div>
                     <div class="end">
-                       @foreach($marks->where('exam','mid') as $mark)
-                       <div class="distributed-marks">
+                        @foreach($mark->where('exam','mid') as $mark)
+                        <div class="distributed-marks">
                             <div class="left-end">
                                 <span> {{$mark->title}}</span>
-                                <span> <i>(Total: {{$mark->marks}} </i> <i>Contribution: {{$mark->contribution}}%)</i></span>
+                                <span> <i>(Total: {{$mark->marks}} </i> <i>Contribution:
+                                        {{$mark->contribution}}%)</i></span>
                             </div>
                             <div class="right-end">
                                 <h2>-(-)</h2>
@@ -189,7 +200,7 @@
                 <div class="final-term">
                     <div class="top alert alert-success">
                         <div class="item">
-                            <span>Final Term-{{$mark->session}}</span>
+                            <span>Final Term</span>
                             <span> <i>(Total: 100 </i> <i>Pass: 33%</i> <i>Contribution: 50%)</i></span>
                         </div>
                         <div class="marks">
@@ -197,11 +208,12 @@
                         </div>
                     </div>
                     <div class="end">
-                       @foreach($marks->where('exam','final') as $mark)
-                       <div class="distributed-marks">
+                        @foreach($mark->where('exam','final') as $mark)
+                        <div class="distributed-marks">
                             <div class="left-end">
                                 <span> {{$mark->title}}</span>
-                                <span> <i>(Total: {{$mark->marks}} </i> <i>Contribution: {{$mark->contribution}}%)</i></span>
+                                <span> <i>(Total: {{$mark->marks}} </i> <i>Contribution:
+                                        {{$mark->contribution}}%)</i></span>
                             </div>
                             <div class="right-end">
                                 <h2>-(-)</h2>
@@ -215,7 +227,42 @@
         </div>
 
     </div>
+    <script>
+    $(document).ready(function() {
+        $(document).on('click', '#class', function() {
+            let sub_id = $('#sub').val();
+           let class_id = $(this).val();
+           $.ajax({
+                    url: "{{route('sub_marks')}}",
+                    method: 'GET',
+                    data: {
+                        sub_id: sub_id,
+                        class_id: class_id,
+                    },
+                    success: function(res) {
+                       $('.add_subject').html(res);
+                    }
+                })
+        });
+    });
 
+    $(document).ready(function() {
+        $(document).on('click', '#add_sub', function() {
+           let sub_id = $(this).val();
+           $.ajax({
+                    url: "{{route('marks_distribution')}}",
+                    method: 'GET',
+                    data: {
+                        sub_id: sub_id,
+                      
+                    },
+                    success: function(res) {
+                       $('.end-section').html(res);
+                    }
+                })
+        });
+    });
+    </script>
 </body>
 
 </html>

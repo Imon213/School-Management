@@ -9,6 +9,7 @@ use App\Models\Program;
 use App\Models\Result;
 use App\Models\Student;
 use App\Models\Class_model;
+use App\Models\Mark;
 class Subject extends Model
 {
     use HasFactory;
@@ -30,6 +31,9 @@ class Subject extends Model
         public function ssClass()
     {
         return $this->belongsTo(Class_model::class,'class_model_id');
+    }
+    public function smarks(){
+        return $this->hasMany(Mark::class);
     }
   
 
