@@ -304,7 +304,7 @@
 
                 <li><a href="#"><i class="fa-solid fa-book"></i> Books</a></li>
                 <li><a href="/viewstory"><i class="fa-solid fa-hippo"></i> Story </a></li>
-                <li><a href="#"> <i class="fa-solid fa-square-poll-vertical"></i> Result</a></li>
+                <li><a href="/getmarks"> <i class="fa-solid fa-square-poll-vertical"></i> Result</a></li>
                 <li> <a href="/notice"><i class="fa-solid fa-bell"></i> Notice</a></li>
             </ul>
             <div class="profile">

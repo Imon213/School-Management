@@ -34,9 +34,9 @@ class ResultController extends Controller
       for($i=0;$i<count($title);$i++)
       {
         Mark::create([
-          'session'=>$request->session,
-          'subject'=>$request->subject,
-          'class'=>$request->class_name,
+          'session_id'=>$request->session,
+          'subject_id'=>$request->subject,
+          'class_model_id'=>$request->class_name,
           'exam'=>$request->exam,
           'title' => $title[$i],
           'contribution' => $con[$i],
