@@ -212,7 +212,7 @@ Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
-Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+// Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
 Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
 Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
 //
