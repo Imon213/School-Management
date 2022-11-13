@@ -486,9 +486,9 @@ nav .profile-details i{
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{route('uploadmarks')}}">
             <i class='bx bx-list-ul' ></i>
-            <span class="links_name">Order list</span>
+            <span class="links_name">Upload marks</span>
           </a>
         </li>
         <li>

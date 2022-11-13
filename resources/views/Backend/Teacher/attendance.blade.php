@@ -9,21 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 	       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 	       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" <meta
+        charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 	       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" <meta
+        charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -34,12 +31,12 @@
     <title></title>
 
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 
-	<title></title>
+    <title></title>
 
 
 
@@ -73,6 +70,7 @@
             </select>
 
 
+
 	<div class="row">
 	<div class="col-md-2">
 		
@@ -89,6 +87,21 @@
        
             <button id="takeatten" style="height:38px; font-size:14px;" name="" class="btn btn-success ">Take Attendance</button>
         
+
+        </div>
+
+
+        
+
+        <div class="col-md-2">
+            <button id="add-more" style="height:38px; font-size:14px;" name="" class="btn btn-primary ">Filter
+                Attendance</button>
+        </div>
+        <div class="col-md-2">
+            <button id="takeatten" style="height:38px; font-size:14px;" name="" class="btn btn-success ">Take
+                Attendance</button>
+        </div>
+
     </div>
 
 
@@ -104,11 +117,11 @@
 
     <script type="text/javascript">
     $('#my-data').ready(function() {
-      $(document).on('click','#record',function(){
-        var currentRow = $(this).closest("tr");
-        var stu_id = currentRow.find("#stu_id").val();
-        var sub_id = currentRow.find("#sub_id").val();
-        $.ajax({
+        $(document).on('click', '#record', function() {
+            var currentRow = $(this).closest("tr");
+            var stu_id = currentRow.find("#stu_id").val();
+            var sub_id = currentRow.find("#sub_id").val();
+            $.ajax({
                 url: "{{ route('atten_record') }}",
                 method: 'GET',
                 data: {
@@ -117,12 +130,12 @@
                 },
                 success: function(res) {
                     $('.table-data').html(res);
-                   
-                   
+
+
                 }
             });
-            
-      })
+
+        })
 
         $(document).on('click', '.atten', function(e) {
             var value = $(this).val();
@@ -130,7 +143,7 @@
             var stu_id = currentRow.find("#stu_id").val();
             var sub_id = currentRow.find("#sub_id").val();
             var date = $('#date').val();
-           
+
 
             $.ajax({
                 url: "{{ route('atten_submit') }}",
@@ -139,16 +152,15 @@
                     stu_id: stu_id,
                     sub_id: sub_id,
                     date: date,
-                    atten:value,
+                    atten: value,
                 },
                 success: function(res) {
-                   if(res=='success')
-                   {
-                    currentRow.find(".marks").text(value);
-                   }
+                    if (res == 'success') {
+                        currentRow.find(".marks").text(value);
+                    }
                 }
             });
-            
+
 
         })
         $(document).on('click', '#add-more', function(e) {
@@ -194,118 +206,10 @@
     })
     </script>
 
-   </script>
-
-        <a href="" class="btn btn-success my-3" data-toggle="modal" data-target="#exampleModal">
-           Registration</a>
-
-        @include('Backend.registration_all_user')
-
- <script>
-        $(document).ready(function() {
-            $(document).on('keyup', '#search', function() {
-                var query = $(this).val();
-                fetch_user_data(query);
-            });
-
-            function fetch_user_data(query = '') {
-                $.ajax({
-                    url: "{{ route('get_user') }}",
-                    method: 'GET',
-                    data: {
-                        query: query
-                    },
-
-                    success: function(res) {
-
-
-                        $('.table-data').html(res);
-                        /* $('#total_records').text(data.total_data); */
-                    }
-                })
-            }
+    
 
 
 
-
-            $(document).on('click', '.pagination a', function(e) {
-                e.preventDefault();
-                let page = $(this).attr('href').split('page=')[1];
-                User(page);
-            })
-
-            function User(page) {
-                $.ajax({
-                    url: "/pagination/paginate-data?page=" + page,
-                    success: function(res) {
-                        $('.table-data').html(res);
-                    },
-                })
-            }
-
-
-            $(document).on('click', '#close', function(e) {
-                /* e.preventDefault(); */
-                /* $("#exampleModal .close").click() */
-                $('#form-submit')[0].reset();
-                $('#exampleModal').modal().hide();
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-            });
-            $(document).on('click', '#reg', function(e) {
-                e.preventDefault();
-                let email = $('#em').val();
-                let type = $('#type').val();
-                let bcn = $('#bcn').val();
-                let password = $('#password').val();
-                $.ajax({
-                    url: "{{route('registration')}}",
-                    method: 'GET',
-                    data: {
-                        email: email,
-                        type: type,
-                        bcn: bcn,
-                        password: password
-                    },
-                    success: function(res) {
-                        if (res == 'success') {
-                            $('#exampleModal').modal().hide();
-                            $('#form-submit')[0].reset();
-                            $('table').load(location.href + ' .table');
-                            $('body').removeClass('modal-open');
-                            $('.modal-backdrop').remove();
-
-                        }
-                    }
-                })
-
-
-            });
-            $('body').on('click', '#show-modal', function() {
-
-                var urlData = $(this).data('url');
-                $.get(urlData, function(data) {
-                    $('#my-modal').modal('show');
-                    $('#email').text(data.email);
-                    $('#link').attr("href", "delete_user/" + data.id);
-
-                });
-            });
-
-            $(document).on('click', '#cancel', function(e) {
-                $('#my-modal').modal('hide');
-
-            });
-
-         
-
-
-
-        });
-        </script>
-
-     
-   
 
 
 </body>
