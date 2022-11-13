@@ -18,25 +18,27 @@ class ProfileController extends Controller
        
 
         $var = Registration::where('email', session('email'))->first();
-        $v = image::where('registration_id', session('user'))->latest()->first();
-        return view('Backend/profile')->with('ss', $var)->with('v', $v);
-        //  return view('Backend/admin')->with('ss',$var)->with('v',$v);
-        //return $v;
+         $v = image::where('registration_id', session('user'))->latest()->first();
+         return view('Backend/profile')->with('ss', $var)->with('v', $v);
+         //return view('Backend/profile')->with('ss',$var);
+        //return $v->registration_id;
 
 
     }
     public function imageup(Request $req)
     {
         $f = $req->img;
-        $exten = $f->getClientOriginalName();
+        return $f;
 
-        $f->storeAs('public/images/', $exten);
-        $pro = new image();
-        $pro->image = $exten;
-        $pro->registration_id = session('user');
-        $req->session()->put('img', $exten);
-        $pro->save();
-        //return view('Backend/profile')->with('pros',$pro);
+        //   $exten = $f->getClientOriginalName();
+
+        //  $f->storeAs('public/images/', $exten);
+        // $pro = new image();
+        //  $pro->image = $exten;
+        // $pro->registration_id = $req->reg;
+        // //$req->session()->put('img', $exten);
+        // $pro->save();
+       
 
         return redirect()->route('pro');
     }
