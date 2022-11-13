@@ -75,43 +75,20 @@
 
 	<div class="row">
 	<div class="col-md-2">
-		<input id="date" type="date" name="cal">
+		
 	</div>
 
-                <div class="col-md-3">
-                    <select name="class_name" id="class_name" class="form-select" aria-label="Default select example">
-                        <option selected>Open this for select class</option>
-                       
-                    </select>
-                </div>
-                
-                <div class="col-md-3">
+               
 
-                    <select name="subject" id="subject" class="form-select" aria-label="Default select example">
-                        <option selected>Open this for select subject</option>
-                         @foreach ($v as $rs)
-                        <option value={{$rs->id}}>{{$rs->sub_name}}</option>
-                         @endforeach
-
-                    <select name="sections" id="sections" class="form-select" aria-label="Default select example">
-                        <option selected>Open this for select section</option>
-                         
-
-                    </select>
-                
-            </div>
-
-           <div class="col-md-2">
+          
             <button id="add-more" name="" class="btn btn-primary ">Filter Attendance</button>
 
-        </div>
+       
 
-        <div class="col-md-2">
-            <button id="add-more" style="height:38px; font-size:14px;" name="" class="btn btn-primary ">Filter Attendance</button>
-        </div>
-        <div class="col-md-2">
+       
+       
             <button id="takeatten" style="height:38px; font-size:14px;" name="" class="btn btn-success ">Take Attendance</button>
-        </div>
+        
     </div>
 
 
