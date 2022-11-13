@@ -23,7 +23,17 @@
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
 	<div class="row">
-                <div class="col-md-4">
+
+                <div class="col-md-3">
+                    <select name="session" id="session" class="form-select" aria-label="Default select example">
+                        <option selected>Open this for select session</option>
+                         @foreach ($ss as $s)
+                        <option value={{$s->id}}>{{$s->session_name}}</option>
+                         @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-3">
                     <select name="class_name" id="class_name" class="form-select" aria-label="Default select example">
                         <option selected>Open this for select class</option>
                          @foreach ($d as $ds)
@@ -32,17 +42,17 @@
                     </select>
                 </div>
                 
-                <div class="col-md-4">
-                    <select name="subject" id="subject" class="form-select" aria-label="Default select example">
+<!--                 <div class="col-md-3">
+                    <select name="title" id="title" class="title" aria-label="Default select example">
                         <option selected>Open this for select subject</option>
-                         @foreach ($v as $rs)
-                        <option value={{$rs->id}}>{{$rs->sub_name}}</option>
+                         @foreach ($r as $r)
+                        <option value={{$r->actStudent->title}</option>
                          @endforeach
                     </select>
                 
-            </div>
+            </div> -->
 
-           <div class="col-md-4">
+           <div class="col-md-3">
             <button id="add-more" name="" class="btn btn-primary ">Filter Student</button>
         </div>
 
@@ -69,13 +79,13 @@
      $(document).on('click', '#add-more', function(e) {
                          e.preventDefault();
                         var cls = $('#class_name').val();
-                         var subject = $('#subject').val();
+                         var session = $('#session').val();
                         $.ajax({
-                    url:"{{ route('filter') }}",
+                    url:"{{ route('filterStudent') }}",
                     method:'GET',
                     data: {
                         class: cls,
-                        subject : subject,
+                        session : session,
                     },
                     success: function(res){
                         $('.table-data').html(res);

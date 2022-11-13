@@ -73,10 +73,11 @@ class teacherController extends Controller
     }
 
           public function filterStudent(Request $request){
-         $admins = Active_student::where('class_model_id',$request->class)->where('subject_id',$request->subject)->get();
-        if($admins->count()>0)
+         $marks = Active_student::where('class_model_id',$request->class)->where('session_id',$request->session)->get();
+        if($marks->count()>0)
         {
-            return view('Backend.Teacher.atten_table')->with('atten',$admins);
+            return view('Backend.Teacher.studentMarks')->with('marks',$marks);
+            
         }
         else
         {
