@@ -208,6 +208,10 @@ Route::post('/profileUpdate',[TeacherController::class,'profileUpdateSubmitted']
 Route::get('/changePicture',[TeacherController::class,'changePicture'])->name('changePicture'); 
 Route::post('/changePicture',[TeacherController::class,'changePictureSubmit'])->name('changePictureSubmit'); 
 
+Route::get('/uploadmarks',[TeacherController::class,'uploadmarks'])->name('uploadmarks'); 
+Route::get('/filterStudent',[TeacherController::class,'filterStudent'])->name('filterStudent'); 
+
+
 
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
@@ -216,4 +220,5 @@ Route::get('/teacher', function () {
 Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
 Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
 //
+
 
