@@ -9,12 +9,16 @@ use App\Models\Routine;
 use App\Models\Program;
 use App\Models\Result;
 use App\Models\subject;
+use App\Models\Mark;
 
 
 class Class_model extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    public function cMark(){
+        return $this->hasMany(Mark::class);
+    }
     public function sStudent()
     {
         return $this->hasMany(Student::class,);
@@ -36,6 +40,9 @@ class Class_model extends Model
     }
          public function sSubject(){
         return $this->hasMany(subject::class);
+
     }
+   
+
 
 }
