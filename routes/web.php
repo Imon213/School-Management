@@ -216,7 +216,11 @@ Route::get('/filterStudent',[TeacherController::class,'filterStudent'])->name('f
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
+
+//Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+
 // Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+
 Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
 Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
 //

@@ -7,12 +7,12 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 	       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!--           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" <meta
         charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 	       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    <!--           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" <meta
         charset="UTF-8">
@@ -109,21 +109,15 @@
                 },
                 success: function(res) {
                     $('.table-data').html(res);
-
-
                 }
             });
-
         })
-
         $(document).on('click', '.atten', function(e) {
             var value = $(this).val();
             var currentRow = $(this).closest("tr");
             var stu_id = currentRow.find("#stu_id").val();
             var sub_id = currentRow.find("#sub_id").val();
             var date = $('#date').val();
-
-
             $.ajax({
                 url: "{{ route('atten_submit') }}",
                 method: 'GET',
@@ -139,8 +133,6 @@
                     }
                 }
             });
-
-
         })
         $(document).on('click', '#add-more', function(e) {
             e.preventDefault();
@@ -160,10 +152,7 @@
                 }
             });
         });
-
-
         $(document).on('click', '#takeatten', function(e) {
-
             var cls = $('#class_name').val();
             var subject = $('#subject').val();
             var date = $('#date').val();
@@ -179,9 +168,7 @@
                     $('.table-data').html(res);
                 }
             });
-
         });
-
     })
     </script>
 
