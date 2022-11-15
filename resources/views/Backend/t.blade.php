@@ -25,7 +25,8 @@
    
         
 	<div class="row">
-        
+        <form method="post" action="{{route('get_marks')}}">
+           @csrf
 	<div class="col-md-3">
 		<select name="session" id="sections" class="form-select" aria-label="Default select example">
                         <option selected>Open this for select session</option>
@@ -65,49 +66,11 @@
         </div>
         <br>
         <br>
-        <div class="table-data"></div>
-
+        
+</form>
         
         
-        <script>
-        $(document).ready(function() {
-            $(document).on('click', '#search', function() {
-                var s = $('#sections').val();
-                 var q = $('#class_name').val();
-                 var r = $('#subject').val();
-
-                 $.ajax({
-           
-                    url: "{{route('get_marks')}}",
-                    method: 'GET',
-                    data: {
-                        s: s,
-                        q: q,
-                        r: r
-                    },
-
-                    success: function(res) {
-                         
-                         $('.table-data').html(res);
-                        /* $('#total_records').text(data.total_data); */
-                    }
-                })
-
-            });
-
-            
-
-
-
-
-           
-         
-
-
-
-        });
-        </script>
-        
+       
        
      
    

@@ -9,7 +9,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Session</th>
+                            <th>{{$v}}</th>
                             <th>Subject</th>
                             <th>Class</th>
                             <th>Exam</th>

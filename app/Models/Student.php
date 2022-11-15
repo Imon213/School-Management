@@ -34,6 +34,10 @@ class Student extends Model
     {
         return $this->belongsTo(session::class,'session_id');
     }
+ public function result()
+    {
+        return $this->hasMany(Result::class);
+    }
 
         public function attendance()
     {
