@@ -3,8 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Result;
+use App\Models\Student;
 use App\Models\Mark;
+use App\Models\Subject;
 return new class extends Migration
 {
     /**
@@ -17,7 +18,8 @@ return new class extends Migration
         Schema::create('studentmarks', function (Blueprint $table) {
             $table->id();
             //$table->timestamps();
-             $table->foreignIdFor(Result::class);
+            $table->foreignIdFor(Subject::class);
+             $table->foreignIdFor(Student::class);
              $table->foreignIdFor(Mark::class);
              $table->String('score');
         });

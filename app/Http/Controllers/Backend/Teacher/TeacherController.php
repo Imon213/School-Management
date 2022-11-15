@@ -10,6 +10,8 @@ use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
 use App\Models\Section;
+use App\Models\result;
+use App\Models\Studentmark;
 use App\Models\Auth\Registration;
 use App\Models\Active_student;
 
@@ -99,5 +101,18 @@ class teacherController extends Controller
         }      
        
   } 
+  public function AddStudentMark(Request $request){
+  
+        $sMark = new Studentmark();
+        $sMark->subject_id = $request->subject_id;
+        $sMark->student_id = $request->stu_id;
+        $sMark->mark_id =$request->mark_id;
+        $sMark->score = $request->score;
+        $sMark->save();
+    
+    
+    return "success";
+
+}
 }
 //iioo
