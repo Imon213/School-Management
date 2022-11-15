@@ -95,13 +95,18 @@
    });
 
 $(document).on('click', '#filter', function() {
-       
+    var currentRow = $(this).closest("tr");
+        var stu_id = currentRow.find("#stu_id").val();
         let title = $(this).val();
+        let subject_id = $('#sub').val();
+        
         $.ajax({
             url: "{{route('filter_student_mark')}}",
             method: 'GET',
             data: {
-                title:title
+                title:title,
+                subject_id: subject_id,
+                stu_id : stu_id,
             },
             success: function(res) {
                 $('.table-data').html(res);
