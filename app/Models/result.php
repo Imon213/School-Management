@@ -13,7 +13,7 @@ use App\Models\Session;
 use App\Models\subject;
 use App\Models\Studentmark;
 use App\Models\Marksheet;
-use App\Models\Studentmark;
+
 
 
 

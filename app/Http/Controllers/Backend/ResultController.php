@@ -10,8 +10,9 @@ use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
 use App\Models\Section;
-use App\Models\Result;
+use App\Models\Studentmark;
 use App\Models\Attendance;
+
 class ResultController extends Controller
 {
     public function GetResult(){
@@ -51,38 +52,39 @@ class ResultController extends Controller
 
 
      
-    // public function marks()
-    // {
-    //    $var = Session::all();
-    //    $v = Subject::all();
-    //    $f=Class_model::all();
-    //   return view('Backend.marks')->with('ss', $var)->with('v', $v)->with('d',$f);
-      
-    // }
-    // public function marksSubmitted(Request $req)
-    // {
-       
-    //      $v=Result::where('session_id',$req->s)->where('class_model_id',$req->q)->where('subject_id',$req->r)->get();
-      
-        
-    //   return view('Backend.marktable',compact('v'));
-      
-       
-    // }
     public function marks()
     {
        $var = Session::all();
        $v = Subject::all();
        $f=Class_model::all();
-      return view('Backend.t')->with('ss', $var)->with('v', $v)->with('d',$f);
+      return view('Backend.marks')->with('ss', $var)->with('v', $v)->with('d',$f);
       
     }
-     public function marksSubmitted(Request $req)
-     {
-        $v=Result::where('session_id',$req->session)->where('class_model_id',$req->class)->where('subject_id',$req->subject)->first();
-      return $v->studentmark;
+    public function marksSubmitted(Request $req)
+    {
+       
+       $v=Studentmark::where('session_id',$req->s)->where('subject_id',$req->r)->get();
       
-     }
+        
+      return view('Backend.marktable',compact('v'));
+         //return $v;
+      
+       
+    }
+    // public function marks()
+    // {
+    //    $var = Session::all();
+    //    $v = Subject::all();
+    //    $f=Class_model::all();
+    //   return view('Backend.t')->with('ss', $var)->with('v', $v)->with('d',$f);
+      
+    // }
+    //  public function marksSubmitted(Request $req)
+    //  {
+    //     $v=Studentmark::where('session_id',$req->session)->where('subject_id',$req->subject)->get();
+    //     return $v[0]->smMark;
+      
+    //  }
 
 
 }

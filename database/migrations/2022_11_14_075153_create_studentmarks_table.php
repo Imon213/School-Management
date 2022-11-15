@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Student;
 use App\Models\Mark;
 use App\Models\Subject;
+use App\Models\session;
 return new class extends Migration
 {
     /**
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->foreignIdFor(Subject::class);
              $table->foreignIdFor(Student::class);
              $table->foreignIdFor(Mark::class);
+             $table->foreignIdFor(session::class);
              $table->String('score');
         });
     }
