@@ -11,7 +11,7 @@ use App\Models\Student;
 use App\Models\Session;
 
 use App\Models\subject;
-use App\Models\Class_model;
+use App\Models\Studentmark;
 use App\Models\Marksheet;
 use App\Models\Studentmark;
 
@@ -31,10 +31,10 @@ class Result extends Model
     return $this->belongsTo(Student::class,'student_id');
    }
 
-    //  public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+     public function rStudentResult()
+    {
+        return $this->hasMany(Studentmark::class);
+    }
     // public function subject()
     // {
     //     return $this->belongsTo(subject::class);
