@@ -3,10 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Class_model;
 use App\Models\Student;
-use App\Models\Session;
-use App\Models\subject;
+use App\Models\Mark;
+use App\Models\Subject;
 return new class extends Migration
 {
     /**
@@ -16,14 +15,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('results', function (Blueprint $table) {
+        Schema::create('studentmarks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Student::class);
-             $table->foreignIdFor(Class_model::class);
-              $table->foreignIdFor(Session::class);
-              $table->foreignIdFor(subject::class);
-          
- });
+            //$table->timestamps();
+            $table->foreignIdFor(Subject::class);
+             $table->foreignIdFor(Student::class);
+             $table->foreignIdFor(Mark::class);
+             $table->String('score');
+        });
     }
 
     /**
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('studentmarks');
     }
 };

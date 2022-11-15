@@ -216,9 +216,18 @@ Route::get('/filterStudent',[TeacherController::class,'filterStudent'])->name('f
 Route::get('/teacher', function () {
 	return view('Backend/Teacher/teacherDashboard');
 });
+
+//Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+
 // Route::get('/attendance',[ResultController::class,'Attendance'])->name('attendance'); 
+
 Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
 Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
+Route::get('/add_subject', [TeacherController::class, 'AddSubject'])->name('add_subject');
+Route::get('/add_exam', [TeacherController::class, 'AddExam'])->name('add_exam');
+Route::get('/add_title', [TeacherController::class, 'AddTitle'])->name('add_title');
+Route::get('/filter_student_mark', [TeacherController::class, 'FilterStudentMark'])->name('filter_student_mark');
+Route::get('/add_student_marks', [TeacherController::class, 'AddStudentMark'])->name('add_student_marks');
 //
 
 
