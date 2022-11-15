@@ -62,13 +62,38 @@
     <div class="row user-table" style="margin-top:60px">
 
         <div class="col-md-12 col-sm-6 table-data">
-            <h3 class="text-center">No Attendence Found. Try to filter....</h3>
+            <h3 class="text-center">No Student Found. Try to filter....</h3>
 
         </div>
     </div>
 
 
     <script type="text/javascript">
+    $(document).on('click', '#upload_marks', function() {
+        var currentRow = $(this).closest("tr");
+        var stu_id = currentRow.find("#stu_id").val();
+        var score = currentRow.find("#score").val();
+        var mark_id = currentRow.find("#mark_id").val();
+        let class_id = $('#class_name').val();
+        let session_id = $('#session').val();
+        let subject_id = $('#sub').val();
+        $.ajax({
+            url: "{{route('add_student_marks')}}",
+            method: 'GET',
+            data: {
+                stu_id : stu_id,
+                score : score, 
+                mark_id : mark_id,
+                class_id : class_id, 
+                session_id : session_id,
+                subject_id : subject_id
+            },
+            success: function(res) {
+                alert(res);
+            }
+        })
+   });
+
 $(document).on('click', '#filter', function() {
        
         let title = $(this).val();

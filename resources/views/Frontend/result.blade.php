@@ -28,16 +28,20 @@
         border-radius: 5px;
         color: white;
     }
-
+     
     .middle-title {
         color: white;
         padding: 1rem;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
     }
 
-    .middle-title>i {
+    .middle-left>i {
         color: white;
         font-size: 14px;
     }
+
 
     .top-section {
         padding: 0 1rem;
@@ -136,11 +140,12 @@
         <div class="top-section">
             <div class="row">
                 <div class="col-md-7">
-                    <select name="class_name"  class="form-select" aria-label="Default select example">
-                        <option class="bg-primary">Select Session</option>
+                    <select name="class_name" class="form-select" aria-label="Default select example">
+                        <option class="bg-primary">Select Class</option>
                         @foreach($active as $item)
 
-                        <option value="{{$item->actclass->id}}" id="class" @if($item->status=="valid") selected @endif >{{$item->actclass->class_name}}
+                        <option value="{{$item->actclass->id}}" id="class" @if($item->status=="valid") selected @endif
+                            >{{$item->actclass->class_name}}
                         </option>
 
                         @endforeach
@@ -162,6 +167,7 @@
             </div>
         </div>
         <div class="end-section">
+
             <div class="middle-title bg-primary">
                 <h3 class="title">{{$sub->sub_name}}</h3>
                 <i>Total marks: 100 </i>
@@ -180,18 +186,20 @@
                         </div>
                     </div>
                     <div class="end">
-                        @foreach($mark->where('exam','mid') as $mark)
+                        @foreach($result as $mark)
+                        @if($mark->smMark->exam == 'mid')
                         <div class="distributed-marks">
                             <div class="left-end">
-                                <span> {{$mark->title}}</span>
-                                <span> <i>(Total: {{$mark->marks}} </i> <i>Contribution:
-                                        {{$mark->contribution}}%)</i></span>
+                                <span> {{$mark->smMark->title}}</span>
+                                <span> <i>(Total: {{$mark->smMark->marks}} </i> <i>Contribution:
+                                        {{$mark->smMark->contribution}}%)</i></span>
                             </div>
                             <div class="right-end">
-                                <h2>-(-)</h2>
+                                <h2>{{$mark->score}}</h2>
                             </div>
 
                         </div>
+                        @endif
                         @endforeach
                     </div>
 
@@ -208,22 +216,25 @@
                         </div>
                     </div>
                     <div class="end">
-                        @foreach($mark->where('exam','final') as $mark)
+                        @foreach($result as $mark)
+                        @if($mark->smMark->exam == 'final')
                         <div class="distributed-marks">
                             <div class="left-end">
-                                <span> {{$mark->title}}</span>
-                                <span> <i>(Total: {{$mark->marks}} </i> <i>Contribution:
-                                        {{$mark->contribution}}%)</i></span>
+                                <span> {{$mark->smMark->title}}</span>
+                                <span> <i>(Total: {{$mark->smMark->marks}} </i> <i>Contribution:
+                                        {{$mark->smMark->contribution}}%)</i></span>
                             </div>
                             <div class="right-end">
-                                <h2>-(-)</h2>
+                                <h2>{{$mark->score}}</h2>
                             </div>
 
                         </div>
+                        @endif
                         @endforeach
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -231,35 +242,35 @@
     $(document).ready(function() {
         $(document).on('click', '#class', function() {
             let sub_id = $('#sub').val();
-           let class_id = $(this).val();
-           $.ajax({
-                    url: "{{route('sub_marks')}}",
-                    method: 'GET',
-                    data: {
-                        sub_id: sub_id,
-                        class_id: class_id,
-                    },
-                    success: function(res) {
-                       $('.add_subject').html(res);
-                    }
-                })
+            let class_id = $(this).val();
+            $.ajax({
+                url: "{{route('sub_marks')}}",
+                method: 'GET',
+                data: {
+                    sub_id: sub_id,
+                    class_id: class_id,
+                },
+                success: function(res) {
+                    $('.add_subject').html(res);
+                }
+            })
         });
     });
 
     $(document).ready(function() {
         $(document).on('click', '#add_sub', function() {
-           let sub_id = $(this).val();
-           $.ajax({
-                    url: "{{route('marks_distribution')}}",
-                    method: 'GET',
-                    data: {
-                        sub_id: sub_id,
-                      
-                    },
-                    success: function(res) {
-                       $('.end-section').html(res);
-                    }
-                })
+            let sub_id = $(this).val();
+            $.ajax({
+                url: "{{route('marks_distribution')}}",
+                method: 'GET',
+                data: {
+                    sub_id: sub_id,
+
+                },
+                success: function(res) {
+                    $('.end-section').html(res);
+                }
+            })
         });
     });
     </script>
