@@ -24,7 +24,7 @@
                 <td>{{$mark->marks}}
                     <input id="mark_id" type="hidden" value="{{$mark->id}}">
                 </td>
-                <td><input id="score" require class="form-control" placeholder="Marks" type="number"></td>
+                <td><input id="score" require class="form-control" @if($exist) value="{{$exist->score}}" @endif placeholder="Marks" type="number"></td>
                 <td><button id="upload_marks" class="btn btn-primary">Submit</button></td>
             </tr>
             @endif

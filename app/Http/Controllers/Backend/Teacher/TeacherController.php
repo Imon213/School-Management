@@ -93,25 +93,45 @@ class teacherController extends Controller
     }
 
           public function FilterStudentMark(Request $request){
+            $session_id =  $request->session()->get('user');
          $mark = Mark::where('id',$request->title)->first();
         $class= Class_model::where('id',$mark->class_model_id)->first();
+        $exist = StudentMark::where('student_id',$session_id)
+        ->where('subject_id',$request->subject_id)
+        ->where('mark_id',$request->title)->first();
         if($class)
         {
+           if($exist)
+           {
+            return view('Backend.Teacher.studentMarks',compact('class','mark','exist'));
+           }
+           else
+           {
             return view('Backend.Teacher.studentMarks',compact('class','mark'));
+           }
         }      
        
   } 
   public function AddStudentMark(Request $request){
-  
-        $sMark = new Studentmark();
-        $sMark->subject_id = $request->subject_id;
-        $sMark->student_id = $request->stu_id;
-        $sMark->mark_id =$request->mark_id;
-        $sMark->score = $request->score;
-        $sMark->save();
-    
-    
-    return "success";
+  $exist = StudentMark::where('student_id',$request->stu_id)
+                       ->where('subject_id',$request->subject_id)
+                       ->where('mark_id',$request->mark_id)->first();
+   if($exist)
+   {
+   return "sorry";
+   }
+   else
+   {
+    $sMark = new Studentmark();
+    $sMark->subject_id = $request->subject_id;
+    $sMark->student_id = $request->stu_id;
+    $sMark->mark_id =$request->mark_id;
+    $sMark->score = $request->score;
+    $sMark->save();
+
+
+return "success";
+   }
 
 }
 }
