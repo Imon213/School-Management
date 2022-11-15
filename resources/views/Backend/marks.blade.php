@@ -30,7 +30,7 @@
 		<select name="session" id="sections" class="form-select" aria-label="Default select example">
                         <option selected>Open this for select session</option>
                         @foreach ($ss as $sss)
-                        <option value={{$sss->session_name}}>{{$sss->session_name}}</option>
+                        <option value={{$sss->id}}>{{$sss->session_name}}</option>
                         
                         @endforeach
                     </select>
@@ -40,7 +40,7 @@
                     <select name="class" id="class_name" class="form-select" aria-label="Default select example">
                         <option selected>Open this for select class</option>
                        @foreach ($d as $h)
-                        <option value={{$h->class_name}}>{{$h->class_name}}</option>
+                        <option value={{$h->id}}>{{$h->class_name}}</option>
                         
                         @endforeach
                     </select>
@@ -50,7 +50,7 @@
                     <select name="subject" id="subject" class="form-select" aria-label="Default select example">
                         <option selected>Open this for select subject</option>
                          @foreach ($v as $vf)
-                        <option value={{$vf->sub_name}}>{{$vf->sub_name}}</option>
+                        <option value={{$vf->id}}>{{$vf->sub_name}}</option>
                         
                         @endforeach
                     </select>

@@ -10,6 +10,7 @@ use App\Models\Result;
 use App\Models\Student;
 use App\Models\Class_model;
 use App\Models\Mark;
+use App\Models\Studentmark;
 class Subject extends Model
 {
     use HasFactory;
@@ -34,6 +35,9 @@ class Subject extends Model
     }
     public function smarks(){
         return $this->hasMany(Mark::class);
+    }
+     public function studentmarks(){
+        return $this->hasMany(Studentmark::class);
     }
   
 

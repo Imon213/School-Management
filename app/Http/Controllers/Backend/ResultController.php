@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-use App\Models\result;
+//use App\Models\result;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -10,7 +10,9 @@ use App\Models\Mark;
 use App\Models\Session;
 use App\Models\Class_model;
 use App\Models\Section;
+use App\Models\Studentmark;
 use App\Models\Attendance;
+
 class ResultController extends Controller
 {
     public function GetResult(){
@@ -61,13 +63,28 @@ class ResultController extends Controller
     public function marksSubmitted(Request $req)
     {
        
-         $v=Mark::where('session',$req->s)->where('class',$req->q)->where('subject',$req->r)->get();
-      
-         
-     return view('Backend.marktable',compact('v'));
+       $v=Studentmark::where('session_id',$req->s)->where('subject_id',$req->r)->get();
       
         
+      return view('Backend.marktable',compact('v'));
+         //return $v;
+      
+       
     }
+    // public function marks()
+    // {
+    //    $var = Session::all();
+    //    $v = Subject::all();
+    //    $f=Class_model::all();
+    //   return view('Backend.t')->with('ss', $var)->with('v', $v)->with('d',$f);
+      
+    // }
+    //  public function marksSubmitted(Request $req)
+    //  {
+    //     $v=Studentmark::where('session_id',$req->session)->where('subject_id',$req->subject)->get();
+    //     return $v[0]->smMark;
+      
+    //  }
 
 
 }

@@ -12,6 +12,7 @@ use App\Models\Result;
 use App\Models\session;
 use App\Models\Marksheet;
 use App\Models\Attendance;
+use App\Models\Studentmark;
 
 
 
@@ -34,6 +35,10 @@ class Student extends Model
     {
         return $this->belongsTo(session::class,'session_id');
     }
+ public function result()
+    {
+        return $this->hasMany(Result::class);
+    }
 
         public function attendance()
     {
@@ -42,6 +47,10 @@ class Student extends Model
     public function ActiveStudent()
     {
         return $this->hasMany(Active_student::class);
+    }
+ public function smark()
+    {
+        return $this->hasMany(Studentmark::class);
     }
 
 
