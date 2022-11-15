@@ -11,7 +11,7 @@ use App\Models\Student;
 use App\Models\Session;
 
 use App\Models\subject;
-use App\Models\Class_model;
+use App\Models\Studentmark;
 use App\Models\Marksheet;
 
 
@@ -23,10 +23,10 @@ class Result extends Model
     use HasFactory;
     public $timestamps = false;
 
-    //  public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+     public function rStudentResult()
+    {
+        return $this->hasMany(Studentmark::class);
+    }
     // public function subject()
     // {
     //     return $this->belongsTo(subject::class);
