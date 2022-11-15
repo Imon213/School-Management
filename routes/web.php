@@ -20,7 +20,7 @@ use App\Http\Controllers\Backend\ClassRoutineController;
 use App\Http\Controllers\Backend\ResultController;
 use App\Http\Controllers\Frontend\NoticeManageController;
 use App\Http\Controllers\Frontend\StudentResultManagementController;
-
+use App\Http\Controllers\studentmsgController;
 
 
 
@@ -229,5 +229,16 @@ Route::get('/add_title', [TeacherController::class, 'AddTitle'])->name('add_titl
 Route::get('/filter_student_mark', [TeacherController::class, 'FilterStudentMark'])->name('filter_student_mark');
 Route::get('/add_student_marks', [TeacherController::class, 'AddStudentMark'])->name('add_student_marks');
 //
+
+
+
+
+
+
+
+////////
+
+Route::get('studentmsg',[studentmsgController::class, 'message'])->name('studentmsg');
+Route::post('studentmsg1',[studentmsgController::class, 'studentmsg'])->name('studentmsg1');
 
 

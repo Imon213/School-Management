@@ -24,6 +24,32 @@
 
     <!-- Cross Site Request Forgery-->
     {{csrf_field()}}
+
+	<div class="row">
+
+                <div class="col-md-3">
+                    <select name="session" id="session" class="form-select" aria-label="Default select example">
+                        <option selected>Open this for select session</option>
+                         @foreach ($ss as $s)
+                        <option value={{$s->id}}>{{$s->session_name}}</option>
+                         @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="class_name" id="class_name" class="form-select" aria-label="Default select example">
+                        <option selected>Open this for select class</option>
+                         @foreach ($d as $ds)
+                        <option value={{$ds->id}}>{{$ds->class_name}}</option>
+                         @endforeach
+                    </select>
+                </div>
+                
+
+
+           <div class="col-md-3">
+            <button id="add-more" name="" class="btn btn-primary ">Filter Student</button>
+
     <div class="row">
 
         <div class="col-md-2">
@@ -33,6 +59,7 @@
                 <option selected value={{$s->id}}>{{$s->session_name}}</option>
                 @endforeach
             </select>
+
         </div>
 
         <div class="col-md-2">
