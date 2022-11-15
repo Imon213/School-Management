@@ -20,8 +20,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Student::class);
              $table->foreignIdFor(Class_model::class);
-              $table->foreignIdFor(Session::class);
-              $table->foreignIdFor(subject::class);
+             $table->foreignIdFor(Session::class);
+            $table->foreignIdFor(subject::class);
           
  });
     }

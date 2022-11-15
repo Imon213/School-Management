@@ -22,6 +22,14 @@ class Result extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    public function studentmark()
+   {
+    return $this->hasmany(Studentmark::class);
+   }
+   public function sresult()
+   {
+    return $this->belongsTo(Student::class,'student_id');
+   }
 
      public function rStudentResult()
     {
