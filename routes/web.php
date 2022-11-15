@@ -20,7 +20,7 @@ use App\Http\Controllers\Backend\ClassRoutineController;
 use App\Http\Controllers\Backend\ResultController;
 use App\Http\Controllers\Frontend\NoticeManageController;
 use App\Http\Controllers\Frontend\StudentResultManagementController;
-
+use App\Http\Controllers\studentmsgController;
 
 
 
@@ -220,5 +220,16 @@ Route::get('/teacher', function () {
 Route::get('/mark',[ResultController::class,'marks'])->name('marks'); 
 Route::get('/get.mark', [ResultController::class, 'marksSubmitted'])->name('get_marks');
 //
+
+
+
+
+
+
+
+////////
+
+Route::get('studentmsg',[studentmsgController::class, 'message'])->name('studentmsg');
+Route::post('studentmsg1',[studentmsgController::class, 'studentmsg'])->name('studentmsg1');
 
 

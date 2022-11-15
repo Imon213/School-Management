@@ -42,15 +42,7 @@
                     </select>
                 </div>
                 
-<!--                 <div class="col-md-3">
-                    <select name="title" id="title" class="title" aria-label="Default select example">
-                        <option selected>Open this for select subject</option>
-                         @foreach ($r as $r)
-                        <option value={{$r->actStudent->title}</option>
-                         @endforeach
-                    </select>
-                
-            </div> -->
+
 
            <div class="col-md-3">
             <button id="add-more" name="" class="btn btn-primary ">Filter Student</button>
