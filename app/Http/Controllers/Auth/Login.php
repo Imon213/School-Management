@@ -60,3 +60,4 @@ class Login extends Controller
          return redirect()->route('login');
     }
 }
+//ok
